@@ -118,21 +118,6 @@
   .view.enter{animation:viewIn .55s cubic-bezier(.2,.7,.2,1)}
   @keyframes viewIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-  /* Main */
-  .intro{max-width:1200px;margin:0 auto;padding:clamp(56px,9vw,120px) var(--pad) clamp(40px,6vw,72px);display:grid;grid-template-columns:200px 1fr;gap:clamp(24px,5vw,72px)}
-  .intro .label{padding-top:.7rem;border-top:2px solid var(--accent);height:max-content}
-  .intro p{font-size:clamp(1.15rem,2.1vw,1.6rem);line-height:1.6;font-weight:300;max-width:46em;text-wrap:pretty}
-  .intro p strong{font-weight:600}
-  .intro p em{font-style:italic;font-weight:500;color:var(--accent)}
-  .facts{max-width:1200px;margin:0 auto;padding:0 var(--pad)}
-  .facts dl{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .facts dl>div{padding:24px 24px 24px 0}
-  .facts dl>div+div{padding-left:24px;border-left:1px solid var(--line)}
-  .facts dt{font-family:'IBM Plex Mono',monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
-  .facts dd{font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:500;letter-spacing:-.01em;margin-top:4px;font-variant-numeric:tabular-nums lining-nums}
-  .photo{max-width:1200px;margin:clamp(40px,6vw,72px) auto 0;padding:0 var(--pad)}
-  .photo img{display:block;width:100%;aspect-ratio:21/8;object-fit:cover;background:var(--band)}
-
   /* Core values */
   .title{padding:clamp(48px,8vw,96px) 0 clamp(28px,4vw,48px)}
   .title .label{display:inline-block;padding-top:.7rem;border-top:2px solid var(--accent);min-width:200px}
@@ -218,14 +203,6 @@
   .pf-ind li{padding:22px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.98rem;font-weight:500;transition:background .2s}
   .pf-ind li:hover{background:var(--band)}
   .pf-ind li b{display:block;font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:400;letter-spacing:.16em;color:var(--accent);margin-bottom:6px}
-  .pf-team{border-top:1px solid var(--line)}
-  .pf-team .r{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:16px 0;border-bottom:1px solid var(--line)}
-  .pf-team .r span:first-child{font-weight:500}
-  .pf-team .r span:last-child{color:var(--muted);font-weight:300}
-  .pf-facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .pf-facts>div{padding:24px 24px 24px 0}
-  .pf-facts>div+div{padding-left:24px;border-left:1px solid var(--line)}
-  .pf-facts dd{font-size:clamp(1.2rem,2.2vw,1.7rem);font-weight:500;margin-top:4px;font-variant-numeric:tabular-nums lining-nums}
   .pf-clients{display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(24px,5vw,72px)}
   .pf-clients section{padding:22px 0;border-top:1px solid var(--line)}
   .pf-clients .label{color:var(--accent)}
@@ -268,12 +245,8 @@
   }
   @media (max-width:1000px){.coverage,.pf-ind{grid-template-columns:repeat(3,1fr)}}
   @media (max-width:900px){
-    .intro,.head,.hero-light .wrap,.pf-head,.pf-time li{grid-template-columns:1fr;gap:16px}
+    .head,.hero-light .wrap,.pf-head,.pf-time li{grid-template-columns:1fr;gap:16px}
     .pf-time li{gap:6px}
-    .facts dl{grid-template-columns:1fr}
-    .facts dl>div,.facts dl>div+div{padding:18px 0;border-left:0}
-    .facts dl>div+div{border-top:1px solid var(--line)}
-    .photo img{aspect-ratio:16/9}
     .values,.bottom,.contact,.us .wrap,.pf-clients{grid-template-columns:1fr}
     .figure{order:2;margin:8px 0 20px}
     .figure img{aspect-ratio:4/3}
@@ -283,10 +256,9 @@
     .grid{grid-template-columns:repeat(2,1fr)}
     .grid li{min-height:160px}
     .us img{order:2;aspect-ratio:16/10}
-    .pf-three,.pf-facts{grid-template-columns:1fr}
-    .pf-three>div,.pf-three>div+div,.pf-facts>div,.pf-facts>div+div{padding:20px 0;border-left:0}
-    .pf-three>div+div,.pf-facts>div+div{border-top:1px solid var(--line)}
-    .pf-team .r{grid-template-columns:1fr;gap:2px}
+    .pf-three{grid-template-columns:1fr}
+    .pf-three>div,.pf-three>div+div{padding:20px 0;border-left:0}
+    .pf-three>div+div{border-top:1px solid var(--line)}
   }
   @media (max-width:560px){
     .services{grid-template-columns:1fr}
@@ -345,7 +317,7 @@
 
 <header>
   <div class="bar">
-    <a class="brand" href="#main" aria-label="Ziantech Solutions Sdn Bhd - home">
+    <a class="brand" href="#profile" aria-label="Ziantech Solutions Sdn Bhd - home">
       <img src="logo.png" alt="Ziantech Solutions Sdn Bhd">
     </a>
     <button class="toggle" id="toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu">
@@ -353,7 +325,6 @@
     </button>
     <nav id="menu" aria-label="Primary">
       <ul>
-        <li><a href="#main" data-link="main">Main</a></li>
         <li><a href="#profile" data-link="profile">Profile</a></li>
         <li><a href="#core-values" data-link="core-values">Core Values</a></li>
         <li><a href="#business-offerings" data-link="business-offerings">Business Offerings</a></li>
@@ -367,30 +338,8 @@
 
 <main id="content" tabindex="-1">
 
-  <!-- MAIN -->
-  <div class="view" data-view="main" data-title="Ziantech Solutions Sdn Bhd">
-    <section class="intro">
-      <span class="label">Main</span>
-      <p><strong>Ziantech Solutions</strong> was established in December 2011 and began operating in the local ICT market in January 2014. Although a relatively new company, our team possesses a combined experience of more than 20 years in the industry. Each member of our team has previously held positions in various segments and business units within the local ICT scene, including Principals, Software Development Houses, and multi-million RM turnover local System Integrator companies. Our <em>"HANDS-ON"</em> approach to our work enables us to adapt to the evolving nature of the business and anticipate future trends.</p>
-    </section>
-    <section class="facts" aria-label="Key facts">
-      <dl>
-        <div><dt>Established</dt><dd>December 2011</dd></div>
-        <div><dt>Operating since</dt><dd>January 2014</dd></div>
-        <div><dt>Combined experience</dt><dd>20+ years</dd></div>
-      </dl>
-    </section>
-    <figure class="photo">
-      <img src="main.jpeg" alt="Data center server room with raised white floor and rows of black server racks" loading="lazy">
-    </figure>
-    <div class="pf-cta"><div class="in">
-      <h2>Learn more about our company and the customers we serve.</h2>
-      <span><a class="pf-btn" href="#profile">Company profile</a> <a class="pf-btn" href="#experience">Track record</a></span>
-    </div></div>
-  </div>
-
   <!-- PROFILE -->
-  <div class="view" data-view="profile" data-title="Profile | Ziantech Solutions Sdn Bhd" hidden>
+  <div class="view" data-view="profile" data-title="Profile | Ziantech Solutions Sdn Bhd">
     <section class="pf">
       <div class="pf-head">
         <span class="label">Profile</span>
@@ -650,7 +599,7 @@
   var band=document.getElementById('bandLabel'), first=true;
 
   function show(name){
-    if(names.indexOf(name)<0) name='main';
+    if(names.indexOf(name)<0) name='profile';
     views.forEach(function(v){
       var on=v.dataset.view===name;
       v.hidden=!on;
@@ -665,7 +614,7 @@
     if(!first) window.scrollTo({top:0,behavior:'auto'});
     first=false;
   }
-  function route(){ show((location.hash||'#main').replace('#','')); }
+  function route(){ show((location.hash||'#profile').replace('#','')); }
   window.addEventListener('hashchange',route);
   route();
 
