@@ -32,7 +32,7 @@
   .skip:focus{left:0}
 
   /* ---------- Advanced Splash ---------- */
-  #splash{position:fixed;inset:0;z-index:10000;color:#eceef3;font-family:'IBM Plex Mono',monospace;overflow:hidden}
+  #splash{--fs:64px;position:fixed;inset:0;z-index:10000;color:#eceef3;font-family:'IBM Plex Mono',monospace;overflow:hidden}
   #splash .strip{position:absolute;top:0;bottom:0;left:calc(100% / 6 * var(--i));width:calc(100% / 6 + 1px);background:var(--dark);transition:transform .95s cubic-bezier(.77,0,.18,1);transition-delay:calc(var(--i) * 70ms)}
   #splash.done .strip{transform:translateY(-101%)}
   #splash.done .strip:nth-child(even){transform:translateY(101%)}
@@ -44,20 +44,18 @@
   #splash.done .hud,#splash.done .core{opacity:0}
   #splash .hud .tick{display:inline-block;width:8px;height:8px;background:var(--accent-soft);margin-right:10px;animation:blink 1s steps(2) infinite}
   @keyframes blink{50%{opacity:.15}}
-  #splash .core{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:opacity .35s;padding:0 var(--pad);text-align:center}
+  #splash .core{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--fs) * .24);transition:opacity .35s;text-align:center;pointer-events:none}
+  #splash .core>*{pointer-events:auto}
 
-  /* Wordmark */
-  #splash .word{font-family:'IBM Plex Sans',system-ui,sans-serif;text-transform:uppercase;line-height:1;user-select:none}
+  /* Wordmark: sized from the ring radius (--fs is set by the script) so it always sits inside the circle */
+  #splash .word{font-family:'IBM Plex Sans',system-ui,sans-serif;text-transform:uppercase;line-height:1;user-select:none;font-weight:inherit}
   #splash .word .w1,#splash .word .w2{display:block;white-space:nowrap}
-  #splash .word .w1{font-weight:200;font-size:clamp(2.1rem,9.2vw,6rem);letter-spacing:.16em;margin-right:-.16em;color:#fff}
-  #splash .word .w2{font-weight:500;font-size:clamp(.8rem,2.7vw,1.6rem);letter-spacing:.62em;margin-right:-.62em;margin-top:clamp(12px,2vw,22px);color:var(--accent-soft)}
+  #splash .word .w1{font-weight:200;font-size:var(--fs);letter-spacing:.14em;margin-right:-.14em;color:#fff}
+  #splash .word .w2{font-weight:500;font-size:calc(var(--fs) * .27);letter-spacing:.55em;margin-right:-.55em;margin-top:calc(var(--fs) * .2);color:var(--accent-soft)}
   #splash .word .ch{display:inline-block;opacity:0;transform:translateY(60%);filter:blur(6px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1),filter .7s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d) * 1ms)}
   #splash .word.show .ch{opacity:1;transform:none;filter:blur(0)}
-  #splash .rule{width:min(260px,56vw);height:1px;background:#343846;position:relative;overflow:hidden}
-  #splash .rule::after{content:"";position:absolute;inset:0;background:var(--accent-soft);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.77,0,.18,1)}
-  #splash .rule.show::after{transform:scaleX(1)}
 
-  #splash .prog{width:min(240px,60vw);height:2px;background:#343846;overflow:hidden}
+  #splash .prog{width:calc(var(--fs) * 3);max-width:60vw;height:2px;background:#343846;overflow:hidden}
   #splash .prog i{display:block;height:100%;width:100%;background:var(--accent-soft);transform-origin:left;transform:scaleX(0)}
   #splash .status{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#eceef3;min-height:1.2em}
   #splash .status.type{animation:type .5s steps(24) both}
@@ -67,13 +65,13 @@
   #splash .big small{font-size:.28em;letter-spacing:.1em;color:var(--accent-soft);margin-left:6px}
 
   /* Enter button (appears when loading completes) */
-  #splash .enter{display:inline-flex;align-items:center;gap:14px;background:var(--accent);color:#fff;border:1px solid var(--accent-soft);font:inherit;font-size:.82rem;letter-spacing:.24em;text-transform:uppercase;padding:16px 30px;cursor:pointer;opacity:0;transform:translateY(10px);pointer-events:none;visibility:hidden;transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1),background .2s,color .2s}
+  #splash .enter{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;border:1px solid var(--accent-soft);font:inherit;font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;padding:13px 24px;cursor:pointer;opacity:0;transform:translateY(10px);pointer-events:none;visibility:hidden;transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1),background .2s,color .2s}
   #splash .enter.ready{opacity:1;transform:none;pointer-events:auto;visibility:visible}
   #splash .enter:hover{background:#fff;color:var(--accent)}
   #splash .enter:focus-visible{outline:2px solid #fff;outline-offset:4px}
-  #splash .enter svg{width:18px;height:18px;transition:transform .25s}
+  #splash .enter svg{width:16px;height:16px;transition:transform .25s}
   #splash .enter:hover svg{transform:translateX(4px)}
-  #splash .slot{min-height:54px;display:flex;align-items:center;justify-content:center}
+  #splash .slot{min-height:46px;display:flex;align-items:center;justify-content:center}
 
   /* Skip button (stays visible while the animation runs) */
   #splash .skipbtn{position:absolute;left:50%;bottom:clamp(18px,3vw,32px);transform:translateX(-50%);background:none;border:1px solid #343846;color:#9aa1b2;font:inherit;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;padding:8px 16px;cursor:pointer;transition:color .2s,border-color .2s,opacity .35s}
@@ -225,6 +223,7 @@
     .grid li{padding:20px}
     #splash .hud.top span:last-child{display:none}
     #splash .word .w2{letter-spacing:.4em;margin-right:-.4em}
+    #splash .enter{padding:11px 18px;font-size:.7rem}
   }
   @media (prefers-reduced-motion:reduce){
     *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
@@ -247,11 +246,10 @@
   <canvas id="net" aria-hidden="true"></canvas>
   <div class="hud top"><span><i class="tick"></i>Ziantech Solutions Sdn Bhd</span><span>Secure connection</span></div>
   <div class="core">
-    <h1 class="word" id="word" aria-label="Ziantech Solutions" style="font-weight:inherit">
+    <h1 class="word" id="word" aria-label="Ziantech Solutions">
       <span class="w1" data-t="Ziantech" data-base="0" aria-hidden="true"></span>
       <span class="w2" data-t="Solutions" data-base="520" aria-hidden="true"></span>
     </h1>
-    <div class="rule" id="rule"></div>
     <div class="prog"><i id="progFill"></i></div>
     <div class="slot">
       <button type="button" class="enter" id="enterBtn">
@@ -516,7 +514,7 @@
   if(matchMedia('(prefers-reduced-motion:reduce)').matches){ s.remove(); release(); return; }
 
   var cv=document.getElementById('net'), ctx=cv.getContext('2d');
-  var wordEl=document.getElementById('word'), ruleEl=document.getElementById('rule'),
+  var wordEl=document.getElementById('word'),
       pctEl=document.getElementById('pct'), progFill=document.getElementById('progFill'),
       statusEl=document.getElementById('status'), statsEl=document.getElementById('stats'),
       skipBtn=document.getElementById('skipBtn'), enterBtn=document.getElementById('enterBtn');
@@ -540,7 +538,10 @@
     ctx.setTransform(DPR,0,0,DPR,0,0);
     var small=W<700;
     LINK=small?100:150;
-    R=Math.min(Math.max(Math.min(W,H)*0.3,150),W*0.46);
+    /* Ring radius: larger than before so the wordmark has room */
+    R = small ? W*0.44 : Math.min(Math.max(Math.min(W,H)*0.36,150), W*0.46);
+    /* Wordmark size is derived from the ring so "ZIANTECH" always sits inside it */
+    s.style.setProperty('--fs', Math.round(R*0.25)+'px');
     var want=small?42:80;
     if(want!==N){
       N=want; nodes=[];
@@ -550,7 +551,7 @@
           vx:(Math.random()-.5)*36, vy:(Math.random()-.5)*36,
           r:1.2+Math.random()*1.6,
           a:(i/N)*Math.PI*2,
-          k:0.9+Math.random()*0.2
+          k:0.92+Math.random()*0.16
         });
       }
     }
@@ -598,7 +599,7 @@
       progFill.style.transform='scaleX('+(v/100)+')';
       var mi=v>=75?3:v>=50?2:v>=25?1:0;
       if(mi!==curMsg) setStatus(mi);
-      if(el>350 && !wordOn){ wordOn=true; wordEl.classList.add('show'); ruleEl.classList.add('show'); }
+      if(el>350 && !wordOn){ wordOn=true; wordEl.classList.add('show'); }
     }
     if(p>=1 && !finished){
       finished=true;
@@ -637,11 +638,14 @@
     }
     linkCount=cnt;
 
-    /* spokes toward the centre during convergence */
+    /* faint spokes toward the centre during convergence (stop short of the wordmark) */
     if(conv>0){
-      ctx.strokeStyle='rgba(201,193,238,'+(0.10*conv).toFixed(3)+')';
+      ctx.strokeStyle='rgba(201,193,238,'+(0.07*conv).toFixed(3)+')';
+      var inner=R*0.72;
       for(var m=0;m<N;m+=3){
-        ctx.beginPath(); ctx.moveTo(pos[m].x,pos[m].y); ctx.lineTo(cx,cy); ctx.stroke();
+        var sx=pos[m].x, sy=pos[m].y, ddx=cx-sx, ddy=cy-sy, dl=Math.sqrt(ddx*ddx+ddy*ddy)||1;
+        var ex=cx-ddx/dl*inner, ey=cy-ddy/dl*inner;
+        ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(ex,ey); ctx.stroke();
       }
     }
 
