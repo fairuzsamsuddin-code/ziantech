@@ -5,10 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ziantech Solutions Sdn Bhd</title>
 <meta name="description" content="Ziantech Solutions Sdn Bhd - a Malaysian ICT company with a hands-on approach. Networking, software development, data security, movement security and system integration.">
+<meta property="og:title" content="Ziantech Solutions Sdn Bhd">
+<meta property="og:description" content="A Malaysian ICT company with a hands-on approach: networking, software development, data security, movement security and system integration.">
+<meta property="og:type" content="website">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"Ziantech Solutions Sdn Bhd",
+  "foundingDate":"2011-12-20",
+  "logo":"logo.png",
+  "telephone":"+60-3-8953-9926",
+  "email":"info@ziantech.com",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"No 17-1, Jalan Atmosphere 6, Pusat Perniagaan Atmosphere",
+    "postalCode":"43300",
+    "addressLocality":"Seri Kembangan",
+    "addressRegion":"Selangor",
+    "addressCountry":"MY"
+  }
+}
+</script>
 <style>
   :root{
     --ink:#14161c;
@@ -32,7 +54,7 @@
   .skip:focus{left:0}
 
   /* ---------- Advanced Splash ---------- */
-  #splash{--fs:64px;position:fixed;inset:0;z-index:10000;color:#eceef3;font-family:'IBM Plex Mono',monospace;overflow:hidden}
+  #splash{position:fixed;inset:0;z-index:10000;color:#eceef3;font-family:'IBM Plex Mono',monospace;overflow:hidden}
   #splash .strip{position:absolute;top:0;bottom:0;left:calc(100% / 6 * var(--i));width:calc(100% / 6 + 1px);background:var(--dark);transition:transform .95s cubic-bezier(.77,0,.18,1);transition-delay:calc(var(--i) * 70ms)}
   #splash.done .strip{transform:translateY(-101%)}
   #splash.done .strip:nth-child(even){transform:translateY(101%)}
@@ -44,18 +66,17 @@
   #splash.done .hud,#splash.done .core{opacity:0}
   #splash .hud .tick{display:inline-block;width:8px;height:8px;background:var(--accent-soft);margin-right:10px;animation:blink 1s steps(2) infinite}
   @keyframes blink{50%{opacity:.15}}
-  #splash .core{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--fs) * .24);transition:opacity .35s;text-align:center;pointer-events:none}
-  #splash .core>*{pointer-events:auto}
+  #splash .core{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--wf,64px) * .22);transition:opacity .35s;padding:0 var(--pad);text-align:center}
 
-  /* Wordmark: sized from the ring radius (--fs is set by the script) so it always sits inside the circle */
-  #splash .word{font-family:'IBM Plex Sans',system-ui,sans-serif;text-transform:uppercase;line-height:1;user-select:none;font-weight:inherit}
+  /* Wordmark (sized from the ring radius by the script via --wf) */
+  #splash .word{font-family:'IBM Plex Sans',system-ui,sans-serif;text-transform:uppercase;line-height:1;user-select:none}
   #splash .word .w1,#splash .word .w2{display:block;white-space:nowrap}
-  #splash .word .w1{font-weight:200;font-size:var(--fs);letter-spacing:.14em;margin-right:-.14em;color:#fff}
-  #splash .word .w2{font-weight:500;font-size:calc(var(--fs) * .27);letter-spacing:.55em;margin-right:-.55em;margin-top:calc(var(--fs) * .2);color:var(--accent-soft)}
+  #splash .word .w1{font-weight:200;font-size:var(--wf,64px);letter-spacing:.16em;margin-right:-.16em;color:#fff}
+  #splash .word .w2{font-weight:500;font-size:calc(var(--wf,64px) * .3);letter-spacing:.62em;margin-right:-.62em;margin-top:calc(var(--wf,64px) * .2);color:var(--accent-soft)}
   #splash .word .ch{display:inline-block;opacity:0;transform:translateY(60%);filter:blur(6px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1),filter .7s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d) * 1ms)}
   #splash .word.show .ch{opacity:1;transform:none;filter:blur(0)}
 
-  #splash .prog{width:calc(var(--fs) * 3);max-width:60vw;height:2px;background:#343846;overflow:hidden}
+  #splash .prog{width:min(200px,50vw);height:2px;background:#343846;overflow:hidden}
   #splash .prog i{display:block;height:100%;width:100%;background:var(--accent-soft);transform-origin:left;transform:scaleX(0)}
   #splash .status{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#eceef3;min-height:1.2em}
   #splash .status.type{animation:type .5s steps(24) both}
@@ -65,13 +86,13 @@
   #splash .big small{font-size:.28em;letter-spacing:.1em;color:var(--accent-soft);margin-left:6px}
 
   /* Enter button (appears when loading completes) */
-  #splash .enter{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;border:1px solid var(--accent-soft);font:inherit;font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;padding:13px 24px;cursor:pointer;opacity:0;transform:translateY(10px);pointer-events:none;visibility:hidden;transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1),background .2s,color .2s}
+  #splash .enter{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;border:1px solid var(--accent-soft);font:inherit;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;padding:12px 22px;cursor:pointer;opacity:0;transform:translateY(10px);pointer-events:none;visibility:hidden;transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1),background .2s,color .2s}
   #splash .enter.ready{opacity:1;transform:none;pointer-events:auto;visibility:visible}
   #splash .enter:hover{background:#fff;color:var(--accent)}
   #splash .enter:focus-visible{outline:2px solid #fff;outline-offset:4px}
   #splash .enter svg{width:16px;height:16px;transition:transform .25s}
   #splash .enter:hover svg{transform:translateX(4px)}
-  #splash .slot{min-height:46px;display:flex;align-items:center;justify-content:center}
+  #splash .slot{min-height:44px;display:flex;align-items:center;justify-content:center}
 
   /* Skip button (stays visible while the animation runs) */
   #splash .skipbtn{position:absolute;left:50%;bottom:clamp(18px,3vw,32px);transform:translateX(-50%);background:none;border:1px solid #343846;color:#9aa1b2;font:inherit;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;padding:8px 16px;cursor:pointer;transition:color .2s,border-color .2s,opacity .35s}
@@ -85,8 +106,8 @@
   .bar{max-width:1200px;margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
   .brand{display:flex;align-items:center}
   .brand img{display:block;height:48px;width:auto;max-width:220px;object-fit:contain}
-  nav ul{display:flex;gap:28px;list-style:none}
-  nav a{font-size:.95rem;padding:6px 0;border-bottom:2px solid transparent;transition:border-color .2s,color .2s;display:inline-block}
+  nav ul{display:flex;gap:22px;list-style:none}
+  nav a{font-size:.92rem;padding:6px 0;border-bottom:2px solid transparent;transition:border-color .2s,color .2s;display:inline-block;white-space:nowrap}
   nav a:hover{border-color:var(--line)}
   nav a[aria-current="page"]{border-color:var(--accent);color:var(--accent)}
   .toggle{display:none;background:none;border:1px solid var(--line);width:44px;height:44px;cursor:pointer;color:var(--ink);align-items:center;justify-content:center}
@@ -175,8 +196,53 @@
   .line a:hover{color:var(--accent);border-color:var(--accent)}
   address{font-style:normal}
 
+  /* ---------- Profile & Track record ---------- */
+  .pf{max-width:1200px;margin:0 auto;padding:clamp(40px,6vw,88px) var(--pad) 0}
+  .pf-head{display:grid;grid-template-columns:200px 1fr;gap:clamp(24px,5vw,72px);margin-bottom:clamp(28px,4vw,52px)}
+  .pf-head .label{padding-top:.7rem;border-top:2px solid var(--accent);height:max-content}
+  .pf-head h1,.pf-head h2{font-size:clamp(1.8rem,4vw,3rem);line-height:1.15;font-weight:400;letter-spacing:-.02em;text-wrap:balance}
+  .pf-head p{margin-top:16px;color:var(--muted);max-width:44em;font-weight:300;font-size:1.05rem;text-wrap:pretty}
+  .pf-quote{border-left:3px solid var(--accent);padding:4px 0 4px 24px;font-size:clamp(1.1rem,2vw,1.5rem);font-weight:300;line-height:1.6;max-width:40em;text-wrap:pretty}
+  .pf-quote cite{display:block;margin-top:12px;font-style:normal}
+  .pf-three{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pf-three>div{padding:28px 28px 28px 0}
+  .pf-three>div+div{padding-left:28px;border-left:1px solid var(--line)}
+  .pf-three .label{color:var(--accent)}
+  .pf-three h3{font-size:1.2rem;font-weight:500;margin:8px 0;letter-spacing:-.01em}
+  .pf-three p{color:var(--muted);font-size:.98rem;font-weight:300}
+  .pf-time{list-style:none;border-top:1px solid var(--line)}
+  .pf-time li{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .pf-time strong{font-weight:500;font-size:1.1rem}
+  .pf-time span{color:var(--muted);font-weight:300}
+  .pf-ind{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .pf-ind li{padding:22px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.98rem;font-weight:500;transition:background .2s}
+  .pf-ind li:hover{background:var(--band)}
+  .pf-ind li b{display:block;font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:400;letter-spacing:.16em;color:var(--accent);margin-bottom:6px}
+  .pf-team{border-top:1px solid var(--line)}
+  .pf-team .r{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .pf-team .r span:first-child{font-weight:500}
+  .pf-team .r span:last-child{color:var(--muted);font-weight:300}
+  .pf-facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pf-facts>div{padding:24px 24px 24px 0}
+  .pf-facts>div+div{padding-left:24px;border-left:1px solid var(--line)}
+  .pf-facts dd{font-size:clamp(1.2rem,2.2vw,1.7rem);font-weight:500;margin-top:4px;font-variant-numeric:tabular-nums lining-nums}
+  .pf-clients{display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(24px,5vw,72px)}
+  .pf-clients section{padding:22px 0;border-top:1px solid var(--line)}
+  .pf-clients .label{color:var(--accent)}
+  .pf-clients h3{font-size:1.05rem;font-weight:500;margin:6px 0 10px}
+  .pf-clients ul{list-style:none}
+  .pf-clients li{padding:5px 0;color:var(--muted);font-size:.97rem;font-weight:300}
+  .pf-work{list-style:none;border-top:1px solid var(--line)}
+  .pf-work li{padding:16px 0 16px 28px;border-bottom:1px solid var(--line);position:relative}
+  .pf-work li::before{content:"";position:absolute;left:0;top:27px;width:12px;height:2px;background:var(--accent)}
+  .pf-cta{background:var(--band);margin-top:clamp(48px,7vw,96px)}
+  .pf-cta .in{max-width:1200px;margin:0 auto;padding:40px var(--pad);display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+  .pf-cta h2{font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:400;letter-spacing:-.01em}
+  .pf-btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 24px;font-size:.95rem;transition:background .2s}
+  .pf-btn:hover{background:#3d2f75}
+
   /* Company band (shared) */
-  #company{background:var(--dark);color:#eceef3;margin-top:clamp(64px,10vw,140px)}
+  #company{background:var(--dark);color:#eceef3}
   .contact{max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,104px) var(--pad);display:grid;grid-template-columns:1.2fr 1fr;gap:48px}
   .contact h2{font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:400;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
   .contact .label{color:var(--accent-soft);margin-bottom:16px;display:block}
@@ -185,13 +251,13 @@
   .row .label{color:#9aa1b2;margin:0;padding-top:3px}
   .row a{border-bottom:1px solid #5b5f72;transition:border-color .2s,color .2s}
   .row a:hover{color:var(--accent-soft);border-color:var(--accent-soft)}
+  .band-gap{height:clamp(64px,10vw,140px)}
 
   footer{background:var(--dark);border-top:1px solid #343846;color:#9aa1b2}
   footer .in{max-width:1200px;margin:0 auto;padding:20px var(--pad);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.82rem}
 
   /* ---------- Responsive ---------- */
-  @media (max-width:1000px){.coverage{grid-template-columns:repeat(3,1fr)}}
-  @media (max-width:900px){
+  @media (max-width:1100px){
     .toggle{display:inline-flex}
     nav{position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);display:none}
     nav.open{display:block}
@@ -199,12 +265,16 @@
     nav li{border-bottom:1px solid var(--line)}
     nav li:last-child{border:0}
     nav a{display:block;padding:14px 0;border-bottom:0}
-    .intro,.head,.hero-light .wrap{grid-template-columns:1fr;gap:16px}
+  }
+  @media (max-width:1000px){.coverage,.pf-ind{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:900px){
+    .intro,.head,.hero-light .wrap,.pf-head,.pf-time li{grid-template-columns:1fr;gap:16px}
+    .pf-time li{gap:6px}
     .facts dl{grid-template-columns:1fr}
     .facts dl>div,.facts dl>div+div{padding:18px 0;border-left:0}
     .facts dl>div+div{border-top:1px solid var(--line)}
     .photo img{aspect-ratio:16/9}
-    .values,.bottom,.contact,.us .wrap{grid-template-columns:1fr}
+    .values,.bottom,.contact,.us .wrap,.pf-clients{grid-template-columns:1fr}
     .figure{order:2;margin:8px 0 20px}
     .figure img{aspect-ratio:4/3}
     .services{grid-template-columns:1fr 1fr}
@@ -213,17 +283,20 @@
     .grid{grid-template-columns:repeat(2,1fr)}
     .grid li{min-height:160px}
     .us img{order:2;aspect-ratio:16/10}
+    .pf-three,.pf-facts{grid-template-columns:1fr}
+    .pf-three>div,.pf-three>div+div,.pf-facts>div,.pf-facts>div+div{padding:20px 0;border-left:0}
+    .pf-three>div+div,.pf-facts>div+div{border-top:1px solid var(--line)}
+    .pf-team .r{grid-template-columns:1fr;gap:2px}
   }
   @media (max-width:560px){
     .services{grid-template-columns:1fr}
     .svc:nth-child(even){padding-left:0;border-left:0}
-    .coverage{grid-template-columns:1fr 1fr}
+    .coverage,.pf-ind{grid-template-columns:1fr 1fr}
     .row,.line{grid-template-columns:1fr;gap:4px}
     .brand img{height:40px}
     .grid li{padding:20px}
     #splash .hud.top span:last-child{display:none}
     #splash .word .w2{letter-spacing:.4em;margin-right:-.4em}
-    #splash .enter{padding:11px 18px;font-size:.7rem}
   }
   @media (prefers-reduced-motion:reduce){
     *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
@@ -246,14 +319,14 @@
   <canvas id="net" aria-hidden="true"></canvas>
   <div class="hud top"><span><i class="tick"></i>Ziantech Solutions Sdn Bhd</span><span>Secure connection</span></div>
   <div class="core">
-    <h1 class="word" id="word" aria-label="Ziantech Solutions">
+    <h1 class="word" id="word" aria-label="Ziantech Solutions" style="font-weight:inherit">
       <span class="w1" data-t="Ziantech" data-base="0" aria-hidden="true"></span>
       <span class="w2" data-t="Solutions" data-base="520" aria-hidden="true"></span>
     </h1>
     <div class="prog"><i id="progFill"></i></div>
     <div class="slot">
       <button type="button" class="enter" id="enterBtn">
-        <span>Enter</span>
+        <span>Enter site</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
       </button>
     </div>
@@ -281,9 +354,11 @@
     <nav id="menu" aria-label="Primary">
       <ul>
         <li><a href="#main" data-link="main">Main</a></li>
+        <li><a href="#profile" data-link="profile">Profile</a></li>
         <li><a href="#core-values" data-link="core-values">Core Values</a></li>
         <li><a href="#business-offerings" data-link="business-offerings">Business Offerings</a></li>
         <li><a href="#partnerships" data-link="partnerships">Partnerships</a></li>
+        <li><a href="#experience" data-link="experience">Track Record</a></li>
         <li><a href="#contact" data-link="contact">Contact</a></li>
       </ul>
     </nav>
@@ -308,6 +383,93 @@
     <figure class="photo">
       <img src="main.jpeg" alt="Data center server room with raised white floor and rows of black server racks" loading="lazy">
     </figure>
+    <div class="pf-cta"><div class="in">
+      <h2>Learn more about our company and the customers we serve.</h2>
+      <span><a class="pf-btn" href="#profile">Company profile</a> <a class="pf-btn" href="#experience">Track record</a></span>
+    </div></div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="view" data-view="profile" data-title="Profile | Ziantech Solutions Sdn Bhd" hidden>
+    <section class="pf">
+      <div class="pf-head">
+        <span class="label">Profile</span>
+        <div>
+          <h1>Built on value, and on the software at the heart of the system.</h1>
+          <p>Ziantech Solutions Sdn Bhd was incorporated in December 2011 and has been active in the local ICT market since January 2014. Our people come from principals, software development houses and multi-million ringgit local system integrators, with more than 20 years of combined experience.</p>
+        </div>
+      </div>
+      <blockquote class="pf-quote">
+        We create. The core ingredient in ICT is always the heart of the system, and the heart is the software that runs it. When the heart stops beating, nothing continues running. We create and develop application software.
+        <cite class="label">Our philosophy</cite>
+      </blockquote>
+    </section>
+
+    <section class="pf">
+      <div class="pf-three">
+        <div><span class="label">Mission</span><h3>Value for our customers</h3><p>Our business is about value. What matters to us is the value we offer to our customers. It guarantees our continuity.</p></div>
+        <div><span class="label">Strategy</span><h3>Less is for more</h3><p>We offer the right solutions: less for the cost, but more on the deliverable.</p></div>
+        <div><span class="label">Core value</span><h3>Human capital</h3><p>Our people's expertise in adapting to and adopting new technologies is our key product.</p></div>
+      </div>
+    </section>
+
+    <section class="pf">
+      <div class="pf-head">
+        <span class="label">Milestones</span>
+        <div><h2>From incorporation to an active market presence.</h2></div>
+      </div>
+      <ul class="pf-time">
+        <li><strong>December 2011</strong><span>Ziantech Solutions Sdn Bhd is incorporated.</span></li>
+        <li><strong>January 2014</strong><span>Becomes active in the local ICT market.</span></li>
+        <li><strong>Today</strong><span>Networking, software development, data security, movement security and system integration, delivered with trusted technology partners.</span></li>
+      </ul>
+    </section>
+
+    <section class="pf">
+      <div class="pf-head">
+        <span class="label">Industries</span>
+        <div><h2>Sectors we serve.</h2><p>Projects in environments where reliability and security are not optional.</p></div>
+      </div>
+      <ul class="pf-ind">
+        <li><b>01</b>Government</li>
+        <li><b>02</b>Military</li>
+        <li><b>03</b>Enforcement</li>
+        <li><b>04</b>Telecommunication</li>
+        <li><b>05</b>Oil & Gas</li>
+        <li><b>06</b>Utility</li>
+        <li><b>07</b>Transportation</li>
+        <li><b>08</b>International Venture Partnership</li>
+        <li><b>09</b>Aviation Industry</li>
+        <li><b>10</b>Offshore Operation</li>
+      </ul>
+    </section>
+
+    <section class="pf">
+      <div class="pf-head">
+        <span class="label">Leadership</span>
+        <div><h2>The people behind the work.</h2></div>
+      </div>
+      <div class="pf-team">
+        <div class="r"><span>Haizam Fikri Hassan</span><span>Managing Director</span></div>
+        <div class="r"><span>Hatta Hashom</span><span>Projects Director</span></div>
+        <div class="r"><span>Hisham Ismail</span><span>Technical Director</span></div>
+        <div class="r"><span>Shafirol Saad, Hamidi Zawawi, Ahmad Fadhil Saleh</span><span>Project Management Team</span></div>
+        <div class="r"><span>Nor Hanna Sallahuddin</span><span>Finance & Admin</span></div>
+      </div>
+    </section>
+
+    <section class="pf">
+      <dl class="pf-facts">
+        <div><dt class="label">Registration No.</dt><dd>972304-U</dd></div>
+        <div><dt class="label">Paid-up capital</dt><dd>RM1,000,000</dd></div>
+        <div><dt class="label">Incorporated</dt><dd>20 Dec 2011</dd></div>
+      </dl>
+    </section>
+
+    <div class="pf-cta"><div class="in">
+      <h2>See who we have worked with.</h2>
+      <a class="pf-btn" href="#experience">View track record</a>
+    </div></div>
   </div>
 
   <!-- CORE VALUES -->
@@ -410,6 +572,51 @@
     </section>
   </div>
 
+  <!-- TRACK RECORD -->
+  <div class="view" data-view="experience" data-title="Track Record | Ziantech Solutions Sdn Bhd" hidden>
+    <section class="pf">
+      <div class="pf-head">
+        <span class="label">Track Record</span>
+        <div>
+          <h1>Trusted by ministries, agencies, universities and enterprises.</h1>
+          <p>A selection of customers we have supplied, installed, built and maintained systems for.</p>
+        </div>
+      </div>
+      <div class="pf-clients">
+        <section><span class="label">Government</span><h3>Ministries, departments and agencies</h3>
+          <ul><li>Kementerian Dalam Negeri (KDN)</li><li>Kementerian Pendidikan (MOE)</li><li>Kementerian Pelajaran Malaysia</li><li>Jabatan Perkhidmatan Awam (JPA)</li><li>Jabatan Penerangan Malaysia</li><li>Jabatan Kebajikan Masyarakat</li><li>Jabatan Kesihatan Negeri Selangor</li><li>Jabatan Standard Malaysia</li><li>Arkib Negara Malaysia</li><li>Institut Penyiaran dan Penerangan Tun Abdul Razak (IPPTAR)</li></ul></section>
+        <section><span class="label">Defence & enforcement</span><h3>Security services</h3>
+          <ul><li>Ibu Pejabat Polis Kontinjen Perak (PDRM)</li><li>Tentera Laut Diraja Malaysia (TLDM)</li></ul></section>
+        <section><span class="label">Education & research</span><h3>Institutions</h3>
+          <ul><li>Universiti Putra Malaysia (UPM)</li><li>Malaysian Agricultural Research and Development Institute (MARDI)</li><li>Maktab Kerjasama Malaysia (MKM)</li></ul></section>
+        <section><span class="label">Utilities, finance & plantations</span><h3>Large enterprises</h3>
+          <ul><li>Tenaga Nasional Berhad (TNB)</li><li>Kumpulan Wang Persaraan (KWAP)</li><li>Felda Global Ventures Plantations (Malaysia) Sdn Bhd (FGV)</li></ul></section>
+        <section><span class="label">Private sector</span><h3>Technology and business partners</h3>
+          <ul><li>Logicalis Malaysia Sdn Bhd</li><li>Sundata Sdn Bhd</li><li>Nusa Greentech Sdn Bhd</li><li>Tulino Management Solutions Sdn Bhd</li></ul></section>
+      </div>
+    </section>
+
+    <section class="pf">
+      <div class="pf-head">
+        <span class="label">What we deliver</span>
+        <div><h2>Types of work in our project history.</h2></div>
+      </div>
+      <ul class="pf-work">
+        <li>IT equipment supply</li>
+        <li>PABX system installation</li>
+        <li>CCTV systems and maintenance</li>
+        <li>Network cabling and infrastructure</li>
+        <li>Software development and maintenance</li>
+        <li>Data security infrastructure support</li>
+      </ul>
+    </section>
+
+    <div class="pf-cta"><div class="in">
+      <h2>Have a project in mind?</h2>
+      <a class="pf-btn" href="#contact">Contact us</a>
+    </div></div>
+  </div>
+
   <!-- CONTACT -->
   <div class="view" data-view="contact" data-title="Contact | Ziantech Solutions Sdn Bhd" hidden>
     <section class="us">
@@ -430,6 +637,8 @@
   </div>
 
 </main>
+
+<div class="band-gap" aria-hidden="true"></div>
 
 <!-- Shared company band -->
 <section id="company" aria-label="Company details">
@@ -538,10 +747,10 @@
     ctx.setTransform(DPR,0,0,DPR,0,0);
     var small=W<700;
     LINK=small?100:150;
-    /* Ring radius: larger than before so the wordmark has room */
-    R = small ? W*0.44 : Math.min(Math.max(Math.min(W,H)*0.36,150), W*0.46);
-    /* Wordmark size is derived from the ring so "ZIANTECH" always sits inside it */
-    s.style.setProperty('--fs', Math.round(R*0.25)+'px');
+    /* ring radius: larger on desktop, ~88% of screen width on phones */
+    R=Math.max(Math.min(W*0.44,H*0.36),120);
+    /* wordmark size is derived from the ring so it always fits inside it */
+    s.style.setProperty('--wf',Math.round(R*0.25)+'px');
     var want=small?42:80;
     if(want!==N){
       N=want; nodes=[];
@@ -551,7 +760,7 @@
           vx:(Math.random()-.5)*36, vy:(Math.random()-.5)*36,
           r:1.2+Math.random()*1.6,
           a:(i/N)*Math.PI*2,
-          k:0.92+Math.random()*0.16
+          k:0.9+Math.random()*0.2
         });
       }
     }
