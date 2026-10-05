@@ -196,12 +196,36 @@
   .line a:hover{color:var(--accent);border-color:var(--accent)}
   address{font-style:normal}
 
-  /* ---------- Track record ---------- */
+  /* ---------- Profile & Track record ---------- */
   .pf{max-width:1200px;margin:0 auto;padding:clamp(40px,6vw,88px) var(--pad) 0}
   .pf-head{display:grid;grid-template-columns:200px 1fr;gap:clamp(24px,5vw,72px);margin-bottom:clamp(28px,4vw,52px)}
   .pf-head .label{padding-top:.7rem;border-top:2px solid var(--accent);height:max-content}
   .pf-head h1,.pf-head h2{font-size:clamp(1.8rem,4vw,3rem);line-height:1.15;font-weight:400;letter-spacing:-.02em;text-wrap:balance}
   .pf-head p{margin-top:16px;color:var(--muted);max-width:44em;font-weight:300;font-size:1.05rem;text-wrap:pretty}
+  .pf-quote{border-left:3px solid var(--accent);padding:4px 0 4px 24px;font-size:clamp(1.1rem,2vw,1.5rem);font-weight:300;line-height:1.6;max-width:40em;text-wrap:pretty}
+  .pf-quote cite{display:block;margin-top:12px;font-style:normal}
+  .pf-three{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pf-three>div{padding:28px 28px 28px 0}
+  .pf-three>div+div{padding-left:28px;border-left:1px solid var(--line)}
+  .pf-three .label{color:var(--accent)}
+  .pf-three h3{font-size:1.2rem;font-weight:500;margin:8px 0;letter-spacing:-.01em}
+  .pf-three p{color:var(--muted);font-size:.98rem;font-weight:300}
+  .pf-time{list-style:none;border-top:1px solid var(--line)}
+  .pf-time li{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .pf-time strong{font-weight:500;font-size:1.1rem}
+  .pf-time span{color:var(--muted);font-weight:300}
+  .pf-ind{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .pf-ind li{padding:22px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.98rem;font-weight:500;transition:background .2s}
+  .pf-ind li:hover{background:var(--band)}
+  .pf-ind li b{display:block;font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:400;letter-spacing:.16em;color:var(--accent);margin-bottom:6px}
+  .pf-team{border-top:1px solid var(--line)}
+  .pf-team .r{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .pf-team .r span:first-child{font-weight:500}
+  .pf-team .r span:last-child{color:var(--muted);font-weight:300}
+  .pf-facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pf-facts>div{padding:24px 24px 24px 0}
+  .pf-facts>div+div{padding-left:24px;border-left:1px solid var(--line)}
+  .pf-facts dd{font-size:clamp(1.2rem,2.2vw,1.7rem);font-weight:500;margin-top:4px;font-variant-numeric:tabular-nums lining-nums}
   .pf-clients{display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(24px,5vw,72px)}
   .pf-clients section{padding:22px 0;border-top:1px solid var(--line)}
   .pf-clients .label{color:var(--accent)}
@@ -242,9 +266,10 @@
     nav li:last-child{border:0}
     nav a{display:block;padding:14px 0;border-bottom:0}
   }
-  @media (max-width:1000px){.coverage{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:1000px){.coverage,.pf-ind{grid-template-columns:repeat(3,1fr)}}
   @media (max-width:900px){
-    .intro,.head,.hero-light .wrap,.pf-head{grid-template-columns:1fr;gap:16px}
+    .intro,.head,.hero-light .wrap,.pf-head,.pf-time li{grid-template-columns:1fr;gap:16px}
+    .pf-time li{gap:6px}
     .facts dl{grid-template-columns:1fr}
     .facts dl>div,.facts dl>div+div{padding:18px 0;border-left:0}
     .facts dl>div+div{border-top:1px solid var(--line)}
@@ -258,11 +283,15 @@
     .grid{grid-template-columns:repeat(2,1fr)}
     .grid li{min-height:160px}
     .us img{order:2;aspect-ratio:16/10}
+    .pf-three,.pf-facts{grid-template-columns:1fr}
+    .pf-three>div,.pf-three>div+div,.pf-facts>div,.pf-facts>div+div{padding:20px 0;border-left:0}
+    .pf-three>div+div,.pf-facts>div+div{border-top:1px solid var(--line)}
+    .pf-team .r{grid-template-columns:1fr;gap:2px}
   }
   @media (max-width:560px){
     .services{grid-template-columns:1fr}
     .svc:nth-child(even){padding-left:0;border-left:0}
-    .coverage{grid-template-columns:1fr 1fr}
+    .coverage,.pf-ind{grid-template-columns:1fr 1fr}
     .row,.line{grid-template-columns:1fr;gap:4px}
     .brand img{height:40px}
     .grid li{padding:20px}
@@ -297,7 +326,7 @@
     <div class="prog"><i id="progFill"></i></div>
     <div class="slot">
       <button type="button" class="enter" id="enterBtn">
-        <span>Enter</span>
+        <span>Enter site</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
       </button>
     </div>
@@ -325,6 +354,7 @@
     <nav id="menu" aria-label="Primary">
       <ul>
         <li><a href="#main" data-link="main">Main</a></li>
+        <li><a href="#profile" data-link="profile">Profile</a></li>
         <li><a href="#core-values" data-link="core-values">Core Values</a></li>
         <li><a href="#business-offerings" data-link="business-offerings">Business Offerings</a></li>
         <li><a href="#partnerships" data-link="partnerships">Partnerships</a></li>
@@ -341,7 +371,7 @@
   <div class="view" data-view="main" data-title="Ziantech Solutions Sdn Bhd">
     <section class="intro">
       <span class="label">Main</span>
-      <p>Established in December 2011, <strong>Ziantech Solutions</strong> began operating in the local ICT market in January 2014. Although a relatively new company, our team possesses a combined experience of more than 20 years in the industry. Each member of our team has previously held positions in various segments and business units within the local ICT scene, including Principals, Software Development Houses, and multi-million RM turnover local System Integrator companies. Our <em>"HANDS-ON"</em> approach to our work enables us to adapt to the evolving nature of the business and anticipate future trends.</p>
+      <p><strong>Ziantech Solutions</strong> was established in December 2011 and began operating in the local ICT market in January 2014. Although a relatively new company, our team possesses a combined experience of more than 20 years in the industry. Each member of our team has previously held positions in various segments and business units within the local ICT scene, including Principals, Software Development Houses, and multi-million RM turnover local System Integrator companies. Our <em>"HANDS-ON"</em> approach to our work enables us to adapt to the evolving nature of the business and anticipate future trends.</p>
     </section>
     <section class="facts" aria-label="Key facts">
       <dl>
@@ -353,6 +383,89 @@
     <figure class="photo">
       <img src="main.jpeg" alt="Data center server room with raised white floor and rows of black server racks" loading="lazy">
     </figure>
+    <div class="pf-cta"><div class="in">
+      <h2>Learn more about our company and the customers we serve.</h2>
+      <span><a class="pf-btn" href="#profile">Company profile</a> <a class="pf-btn" href="#experience">Track record</a></span>
+    </div></div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="view" data-view="profile" data-title="Profile | Ziantech Solutions Sdn Bhd" hidden>
+    <section class="pf">
+      <div class="pf-head">
+        <span class="label">Profile</span>
+        <div>
+          <h1>Built on value, and on the software at the heart of the system.</h1>
+          <p>Ziantech Solutions Sdn Bhd was incorporated in December 2011 and has been active in the local ICT market since January 2014. Our people come from principals, software development houses and multi-million ringgit local system integrators, with more than 20 years of combined experience.</p>
+        </div>
+      </div>
+      <blockquote class="pf-quote">
+        We create. The core ingredient in ICT is always the heart of the system, and the heart is the software that runs it. When the heart stops beating, nothing continues running. We create and develop application software.
+        <cite class="label">Our philosophy</cite>
+      </blockquote>
+    </section>
+
+    <section class="pf">
+      <div class="pf-three">
+        <div><span class="label">Mission</span><h3>Value for our customers</h3><p>Our business is about value. What matters to us is the value we offer to our customers. It guarantees our continuity.</p></div>
+        <div><span class="label">Strategy</span><h3>Less is for more</h3><p>We offer the right solutions: less for the cost, but more on the deliverable.</p></div>
+        <div><span class="label">Core value</span><h3>Human capital</h3><p>Our people's expertise in adapting to and adopting new technologies is our key product.</p></div>
+      </div>
+    </section>
+
+    <section class="pf">
+      <div class="pf-head">
+        <span class="label">Milestones</span>
+        <div><h2>From incorporation to an active market presence.</h2></div>
+      </div>
+      <ul class="pf-time">
+        <li><strong>December 2011</strong><span>Ziantech Solutions Sdn Bhd is incorporated.</span></li>
+        <li><strong>January 2014</strong><span>Becomes active in the local ICT market.</span></li>
+        <li><strong>Today</strong><span>Networking, software development, data security, movement security and system integration, delivered with trusted technology partners.</span></li>
+      </ul>
+    </section>
+
+    <section class="pf">
+      <div class="pf-head">
+        <span class="label">Industries</span>
+        <div><h2>Sectors we serve.</h2><p>Projects in environments where reliability and security are not optional.</p></div>
+      </div>
+      <ul class="pf-ind">
+        <li><b>01</b>Government</li>
+        <li><b>02</b>Military</li>
+        <li><b>03</b>Enforcement</li>
+        <li><b>04</b>Telecommunication</li>
+        <li><b>05</b>Oil & Gas</li>
+        <li><b>06</b>Utility</li>
+        <li><b>07</b>Transportation</li>
+        <li><b>08</b>International Venture Partnership</li>
+        <li><b>09</b>Aviation Industry</li>
+        <li><b>10</b>Offshore Operation</li>
+      </ul>
+    </section>
+
+    <section class="pf">
+      <div class="pf-head">
+        <span class="label">Leadership</span>
+        <div><h2>The people behind the work.</h2></div>
+      </div>
+      <div class="pf-team">
+        <div class="r"><span>Haizam Fikri Hassan</span><span>Managing Director</span></div>
+        <div class="r"><span>Hatta Hashom</span><span>Projects Director</span></div>
+        <div class="r"><span>Hisham Ismail</span><span>Technical Director</span></div>
+        <div class="r"><span>Shafirol Saad, Hamidi Zawawi, Ahmad Fadhil Saleh</span><span>Project Management Team</span></div>
+        <div class="r"><span>Nor Hanna Sallahuddin</span><span>Finance & Admin</span></div>
+      </div>
+    </section>
+
+    <section class="pf">
+      <dl class="pf-facts">
+        <div><dt class="label">Registration No.</dt><dd>972304-U</dd></div>
+        <div><dt class="label">Paid-up capital</dt><dd>RM1,000,000</dd></div>
+        <div><dt class="label">Incorporated</dt><dd>20 Dec 2011</dd></div>
+      </dl>
+    </section>
+
     <div class="pf-cta"><div class="in">
       <h2>See who we have worked with.</h2>
       <a class="pf-btn" href="#experience">View track record</a>
