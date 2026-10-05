@@ -165,7 +165,7 @@
   }
   .item.is-in::before,.pf-clients section.is-in::before{transform:scaleX(1)}
 
-  /* Scroll-driven services strip */
+  /* Auto-scrolling services strip */
   .marq{overflow:hidden;margin-top:clamp(48px,7vw,96px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(18px,3vw,34px) 0;user-select:none}
   .marq .track{display:flex;align-items:center;width:max-content;will-change:transform}
   .marq .track>*{flex:none}
@@ -757,15 +757,25 @@
       var off=(r.top+r.height/2-vh/2)*-el._s;
       el.style.transform='translate3d(0,'+off.toFixed(1)+'px,0)'+(el._z!==1?' scale('+el._z+')':'');
     });
-    if(track.offsetParent){
-      var w=track.scrollWidth/3;
-      if(w>0) track.style.transform='translate3d('+(-((y*.45)%w)).toFixed(1)+'px,0,0)';
-    }
   }
   function req(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
   window.addEventListener('scroll',req,{passive:true});
   window.addEventListener('resize',req);
   toTop.addEventListener('click',function(){ window.scrollTo({top:0,behavior:reduced?'auto':'smooth'}); });
+
+  /* ---------- Auto-scrolling services strip ---------- */
+  var trackX=0, trackLast=performance.now(), SPEED=60; /* pixels per second: higher = faster, lower = slower */
+  (function autoScroll(now){
+    var dt=Math.min((now-trackLast)/1000,.05); trackLast=now;
+    if(track.offsetParent && !reduced){
+      var w=track.scrollWidth/3;
+      if(w>0){
+        trackX=(trackX+SPEED*dt)%w;
+        track.style.transform='translate3d('+(-trackX).toFixed(1)+'px,0,0)';
+      }
+    }
+    requestAnimationFrame(autoScroll);
+  })(performance.now());
 
   /* ---------- Page switching with wipe transition ---------- */
   var wipe=document.getElementById('wipe'), wipeLbl=document.getElementById('wipeLbl');
