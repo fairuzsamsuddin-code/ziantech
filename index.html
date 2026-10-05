@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Partnerships | Ziantech Solutions Sdn Bhd</title>
-<meta name="description" content="Ziantech Solutions partners: Sangfor, Maipu, Ruckus, TP-Link, Aruba, HPE, HP, Alcatel, Cisco, Avaya, Bosch, Huawei and Java.">
+<title>Ziantech Solutions Sdn Bhd</title>
+<meta name="description" content="Ziantech Solutions Sdn Bhd - a Malaysian ICT company with a hands-on approach. Networking, software development, data security, movement security and system integration.">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,29 +28,99 @@
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .label{font-family:'IBM Plex Mono',monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
   .wrap{max-width:1200px;margin:0 auto;padding:0 var(--pad)}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:10px 16px;z-index:10001}
+  .skip:focus{left:0}
 
-  /* Header */
+  /* ---------- Splash ---------- */
+  #splash{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;pointer-events:none}
+  #splash .panel{position:absolute;top:0;bottom:0;width:50.1%;background:#fff;transition:transform .9s cubic-bezier(.77,0,.18,1)}
+  #splash .left{left:0}
+  #splash .right{right:0}
+  #splash .core{position:relative;z-index:1;text-align:center;transition:opacity .4s}
+  #splash .core img{display:block;height:72px;width:auto;max-width:70vw;margin:0 auto;opacity:0;transform:translateY(12px);animation:splashIn .9s .2s forwards cubic-bezier(.2,.7,.2,1)}
+  #splash .count{margin-top:28px;font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.2em;color:var(--muted);font-variant-numeric:tabular-nums}
+  #splash .bar{width:200px;height:2px;background:var(--line);margin:12px auto 0;overflow:hidden}
+  #splash .bar i{display:block;height:100%;width:0;background:var(--accent)}
+  #splash.done .left{transform:translateX(-100%)}
+  #splash.done .right{transform:translateX(100%)}
+  #splash.done .core{opacity:0}
+  @keyframes splashIn{to{opacity:1;transform:none}}
+  body.splashing{overflow:hidden}
+
+  /* ---------- Header ---------- */
   header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
   .bar{max-width:1200px;margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
   .brand{display:flex;align-items:center}
   .brand img{display:block;height:48px;width:auto;max-width:220px;object-fit:contain}
   nav ul{display:flex;gap:28px;list-style:none}
-  nav a{font-size:.95rem;padding:6px 0;border-bottom:2px solid transparent;transition:border-color .2s,color .2s}
+  nav a{font-size:.95rem;padding:6px 0;border-bottom:2px solid transparent;transition:border-color .2s,color .2s;display:inline-block}
   nav a:hover{border-color:var(--line)}
   nav a[aria-current="page"]{border-color:var(--accent);color:var(--accent)}
-  .toggle{display:none;background:none;border:1px solid var(--line);width:44px;height:44px;cursor:pointer;color:var(--ink)}
+  .toggle{display:none;background:none;border:1px solid var(--line);width:44px;height:44px;cursor:pointer;color:var(--ink);align-items:center;justify-content:center}
   .toggle svg{width:22px;height:22px}
 
-  /* Hero */
-  .hero{position:relative;background:var(--band);min-height:clamp(300px,40vw,440px);display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--line)}
-  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
-  .hero::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.72)}
-  .hero .wrap{position:relative;z-index:1;width:100%;padding-bottom:clamp(32px,5vw,64px);display:grid;grid-template-columns:200px 1fr;gap:clamp(24px,5vw,72px);align-items:end}
-  .hero .label{color:var(--ink);padding-top:.7rem;border-top:2px solid var(--accent);height:max-content;margin-bottom:.6rem}
-  .hero h1{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:400;letter-spacing:-.03em;line-height:1.05}
-  .hero blockquote{margin-top:16px;font-size:clamp(1.05rem,1.8vw,1.35rem);font-weight:300;line-height:1.6;max-width:36em;text-wrap:pretty;color:var(--ink)}
+  /* ---------- Views ---------- */
+  .view[hidden]{display:none}
+  .view.enter{animation:viewIn .55s cubic-bezier(.2,.7,.2,1)}
+  @keyframes viewIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-  /* Partners */
+  /* Main */
+  .intro{max-width:1200px;margin:0 auto;padding:clamp(56px,9vw,120px) var(--pad) clamp(40px,6vw,72px);display:grid;grid-template-columns:200px 1fr;gap:clamp(24px,5vw,72px)}
+  .intro .label{padding-top:.7rem;border-top:2px solid var(--accent);height:max-content}
+  .intro p{font-size:clamp(1.15rem,2.1vw,1.6rem);line-height:1.6;font-weight:300;max-width:46em;text-wrap:pretty}
+  .intro p strong{font-weight:600}
+  .intro p em{font-style:italic;font-weight:500;color:var(--accent)}
+  .facts{max-width:1200px;margin:0 auto;padding:0 var(--pad)}
+  .facts dl{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .facts dl>div{padding:24px 24px 24px 0}
+  .facts dl>div+div{padding-left:24px;border-left:1px solid var(--line)}
+  .facts dt{font-family:'IBM Plex Mono',monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+  .facts dd{font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:500;letter-spacing:-.01em;margin-top:4px;font-variant-numeric:tabular-nums lining-nums}
+  .photo{max-width:1200px;margin:clamp(40px,6vw,72px) auto 0;padding:0 var(--pad)}
+  .photo img{display:block;width:100%;aspect-ratio:21/8;object-fit:cover;background:var(--band)}
+
+  /* Core values */
+  .title{padding:clamp(48px,8vw,96px) 0 clamp(28px,4vw,48px)}
+  .title .label{display:inline-block;padding-top:.7rem;border-top:2px solid var(--accent);min-width:200px}
+  .title h1{font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:400;letter-spacing:-.03em;line-height:1.05;margin-top:20px}
+  .values{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,6vw,96px);align-items:start}
+  .col{display:flex;flex-direction:column}
+  .item{padding:28px 0;border-top:1px solid var(--line)}
+  .item h2{font-size:clamp(1.3rem,2vw,1.6rem);font-weight:400;letter-spacing:-.01em;line-height:1.3;margin-bottom:12px}
+  .item p{font-size:1.02rem;font-weight:300;max-width:36em;text-wrap:pretty}
+  .figure{margin-top:28px}
+  .figure img{display:block;width:100%;aspect-ratio:1/1.06;object-fit:cover;background:var(--band)}
+  .bottom{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,6vw,96px);margin-top:12px}
+
+  /* Business offerings */
+  .hero{position:relative;background:var(--dark);color:#fff;min-height:clamp(320px,48vw,520px);display:flex;align-items:flex-end;overflow:hidden}
+  .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+  .hero::after{content:"";position:absolute;inset:0;background:rgba(20,22,28,.45)}
+  .hero .wrap{position:relative;z-index:1;width:100%;padding-bottom:clamp(32px,5vw,64px)}
+  .hero .label{color:#e3e5ec;display:inline-block;border-top:2px solid var(--accent-soft);padding-top:.7rem;min-width:200px}
+  .hero h1{font-size:clamp(2.6rem,6.5vw,5rem);font-weight:400;letter-spacing:-.03em;line-height:1.05;margin-top:16px}
+  section.block{padding:clamp(56px,8vw,112px) 0 0}
+  .head{display:grid;grid-template-columns:200px 1fr;gap:clamp(24px,5vw,72px);margin-bottom:clamp(28px,4vw,48px)}
+  .head .label{padding-top:.7rem;border-top:2px solid var(--accent);height:max-content}
+  .head h2{font-size:clamp(2rem,4.2vw,3.2rem);font-weight:400;letter-spacing:-.02em;line-height:1.1}
+  .services{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+  .svc{padding:28px 28px 36px 0;border-bottom:1px solid var(--line)}
+  .svc:not(:nth-child(3n+1)){padding-left:28px;border-left:1px solid var(--line)}
+  .svc .label{display:block;margin-bottom:12px;color:var(--accent)}
+  .svc h3{font-size:1.3rem;font-weight:500;letter-spacing:-.01em;line-height:1.3;margin-bottom:10px}
+  .svc p{font-size:1rem;font-weight:300;max-width:26em;text-wrap:pretty}
+  .coverage{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .coverage li{padding:22px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:1.02rem;display:flex;align-items:center;min-height:84px;transition:background .2s}
+  .coverage li:hover{background:var(--band)}
+
+  /* Partnerships */
+  .hero-light{position:relative;background:var(--band);min-height:clamp(300px,40vw,440px);display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero-light>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+  .hero-light::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.72)}
+  .hero-light .wrap{position:relative;z-index:1;width:100%;padding-bottom:clamp(32px,5vw,64px);display:grid;grid-template-columns:200px 1fr;gap:clamp(24px,5vw,72px);align-items:end}
+  .hero-light .label{color:var(--ink);padding-top:.7rem;border-top:2px solid var(--accent);height:max-content;margin-bottom:.6rem}
+  .hero-light h1{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:400;letter-spacing:-.03em;line-height:1.05}
+  .hero-light blockquote{margin-top:16px;font-size:clamp(1.05rem,1.8vw,1.35rem);font-weight:300;line-height:1.6;max-width:36em;text-wrap:pretty}
   .partners{padding:clamp(48px,7vw,96px) 0 0}
   .grid{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
   .grid li{border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;min-height:200px;padding:28px;transition:background .2s}
@@ -59,43 +129,91 @@
   .grid .fb{display:none;text-align:center;font-weight:500;font-size:1.15rem;letter-spacing:-.01em;line-height:1.3}
   .grid .fb small{display:block;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:400}
 
-  /* Contact */
-  #contact{background:var(--dark);color:#eceef3;margin-top:clamp(64px,10vw,140px)}
+  /* Contact view */
+  .us{padding:clamp(56px,9vw,128px) 0 0}
+  .us .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+  .us img{display:block;width:100%;aspect-ratio:1.38/1;object-fit:cover;background:var(--band)}
+  .us .label.tag{display:inline-block;padding-top:.7rem;border-top:2px solid var(--accent);min-width:160px}
+  .us h1{font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:400;letter-spacing:-.03em;line-height:1.05;margin:18px 0 28px}
+  .lines{border-top:1px solid var(--line)}
+  .line{display:grid;grid-template-columns:90px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .line .label{padding-top:3px}
+  .line a{border-bottom:1px solid var(--line);transition:border-color .2s,color .2s}
+  .line a:hover{color:var(--accent);border-color:var(--accent)}
+  address{font-style:normal}
+
+  /* Company band (shared) */
+  #company{background:var(--dark);color:#eceef3;margin-top:clamp(64px,10vw,140px)}
   .contact{max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,104px) var(--pad);display:grid;grid-template-columns:1.2fr 1fr;gap:48px}
   .contact h2{font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:400;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
   .contact .label{color:var(--accent-soft);margin-bottom:16px;display:block}
   .rows{border-top:1px solid #343846}
   .row{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid #343846}
   .row .label{color:#9aa1b2;margin:0;padding-top:3px}
-  .row address{font-style:normal}
   .row a{border-bottom:1px solid #5b5f72;transition:border-color .2s,color .2s}
   .row a:hover{color:var(--accent-soft);border-color:var(--accent-soft)}
 
   footer{background:var(--dark);border-top:1px solid #343846;color:#9aa1b2}
   footer .in{max-width:1200px;margin:0 auto;padding:20px var(--pad);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.82rem}
 
+  /* ---------- Responsive ---------- */
+  @media (max-width:1000px){.coverage{grid-template-columns:repeat(3,1fr)}}
   @media (max-width:900px){
-    .toggle{display:inline-flex;align-items:center;justify-content:center}
+    .toggle{display:inline-flex}
     nav{position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);display:none}
     nav.open{display:block}
     nav ul{flex-direction:column;gap:0;padding:8px var(--pad) 16px}
     nav li{border-bottom:1px solid var(--line)}
     nav li:last-child{border:0}
     nav a{display:block;padding:14px 0;border-bottom:0}
-    .hero .wrap{grid-template-columns:1fr;gap:16px}
+    .intro,.head,.hero-light .wrap{grid-template-columns:1fr;gap:16px}
+    .facts dl{grid-template-columns:1fr}
+    .facts dl>div,.facts dl>div+div{padding:18px 0;border-left:0}
+    .facts dl>div+div{border-top:1px solid var(--line)}
+    .photo img{aspect-ratio:16/9}
+    .values,.bottom,.contact,.us .wrap{grid-template-columns:1fr}
+    .figure{order:2;margin:8px 0 20px}
+    .figure img{aspect-ratio:4/3}
+    .services{grid-template-columns:1fr 1fr}
+    .svc,.svc:not(:nth-child(3n+1)){padding:24px 20px 28px 0;border-left:0}
+    .svc:nth-child(even){padding-left:20px;border-left:1px solid var(--line)}
     .grid{grid-template-columns:repeat(2,1fr)}
     .grid li{min-height:160px}
-    .contact{grid-template-columns:1fr}
+    .us img{order:2;aspect-ratio:16/10}
   }
-  @media (max-width:480px){.row{grid-template-columns:1fr;gap:4px}.brand img{height:40px}.grid li{padding:20px}}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+  @media (max-width:560px){
+    .services{grid-template-columns:1fr}
+    .svc:nth-child(even){padding-left:0;border-left:0}
+    .coverage{grid-template-columns:1fr 1fr}
+    .row,.line{grid-template-columns:1fr;gap:4px}
+    .brand img{height:40px}
+    .grid li{padding:20px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+    #splash{display:none}
+    body.splashing{overflow:auto}
+  }
 </style>
 </head>
-<body>
+<body class="splashing">
+
+<!-- Splash -->
+<div id="splash" aria-hidden="true">
+  <div class="panel left"></div>
+  <div class="panel right"></div>
+  <div class="core">
+    <img src="logo.png" alt="">
+    <div class="count"><span id="pct">0</span>%</div>
+    <div class="bar"><i id="fill"></i></div>
+  </div>
+</div>
+
+<a class="skip" href="#content">Skip to content</a>
 
 <header>
   <div class="bar">
-    <a class="brand" href="index.html" aria-label="Ziantech Solutions Sdn Bhd - home">
+    <a class="brand" href="#main" aria-label="Ziantech Solutions Sdn Bhd - home">
       <img src="logo.png" alt="Ziantech Solutions Sdn Bhd">
     </a>
     <button class="toggle" id="toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu">
@@ -103,111 +221,168 @@
     </button>
     <nav id="menu" aria-label="Primary">
       <ul>
-        <li><a href="index.html">Main</a></li>
-        <li><a href="core-values.html">Core Values</a></li>
-        <li><a href="business-offerings.html">Business Offerings</a></li>
-        <li><a href="partnerships.html" aria-current="page">Partnerships</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#main" data-link="main">Main</a></li>
+        <li><a href="#core-values" data-link="core-values">Core Values</a></li>
+        <li><a href="#business-offerings" data-link="business-offerings">Business Offerings</a></li>
+        <li><a href="#partnerships" data-link="partnerships">Partnerships</a></li>
+        <li><a href="#contact" data-link="contact">Contact</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
-<main>
-  <section class="hero" aria-label="Partnerships">
-    <img src="https://images.pexels.com/photos/19894154/pexels-photo-19894154.jpeg?cs=srgb&dl=pexels-sachuzayn-19894154.jpg&fm=jpg" alt="Two hands reaching toward each other in a handshake" loading="eager">
+<main id="content" tabindex="-1">
+
+  <!-- MAIN -->
+  <div class="view" data-view="main" data-title="Ziantech Solutions Sdn Bhd">
+    <section class="intro">
+      <span class="label">Main</span>
+      <p><strong>Ziantech Solutions</strong> was established in December 2011 and began operating in the local ICT market in January 2014. Although a relatively new company, our team possesses a combined experience of more than 20 years in the industry. Each member of our team has previously held positions in various segments and business units within the local ICT scene, including Principals, Software Development Houses, and multi-million RM turnover local System Integrator companies. Our <em>"HANDS-ON"</em> approach to our work enables us to adapt to the evolving nature of the business and anticipate future trends.</p>
+    </section>
+    <section class="facts" aria-label="Key facts">
+      <dl>
+        <div><dt>Established</dt><dd>December 2011</dd></div>
+        <div><dt>Operating since</dt><dd>January 2014</dd></div>
+        <div><dt>Combined experience</dt><dd>20+ years</dd></div>
+      </dl>
+    </section>
+    <figure class="photo">
+      <img src="https://datacenterfloortiles.com/wp-content/uploads/2021/01/Data-Center-Raised-Floor-Server-Room.jpg" alt="Data center server room with raised white floor and rows of black server racks" loading="lazy">
+    </figure>
+  </div>
+
+  <!-- CORE VALUES -->
+  <div class="view" data-view="core-values" data-title="Core Values | Ziantech Solutions Sdn Bhd" hidden>
     <div class="wrap">
-      <span class="label">Partnerships</span>
-      <div>
-        <h1>Partnerships.</h1>
-        <blockquote>"The successful functioning of a relationship relies on the interdependence and coordination between its moving parts, namely the partners."</blockquote>
+      <div class="title">
+        <span class="label">Core Values</span>
+        <h1>Core Values.</h1>
+      </div>
+      <div class="values">
+        <div class="col">
+          <section class="item">
+            <h2>Core Values Human Capital</h2>
+            <p>Our expertise in adapting and adopting new technologies is a KEY ASPECT of ours, and we are passionate about upholding values in all aspects of business. This includes how we serve our customers, interact with our colleagues, and engage with our partners and strategic alliances.</p>
+          </section>
+          <section class="item">
+            <h2>Business Strategy</h2>
+            <p>Our motto of 'less is for more' reflects our commitment to providing the right solutions that offer more value on deliverables while minimizing costs.</p>
+          </section>
+        </div>
+        <figure class="figure">
+          <img src="https://media.craiyon.com/2025-09-10/fpXn3sscRf2C78H3tOnrHw.webp" alt="Glowing blue fibre optic light burst with bright core and floating molecular rings" loading="lazy">
+        </figure>
+        <div class="bottom">
+          <section class="item">
+            <h2>We Create</h2>
+            <p>At the core of ICT is always the heart of the system, which we believe is the software that drives it. Without the heart beating, the system cannot continue running. As such, we specialize in creating and developing application software.</p>
+          </section>
+          <section class="item">
+            <h2>Why Us?</h2>
+            <p>We provide the fundamental elements of a successful business: the right technologies, solutions, people, and customer service. By combining these elements, we design what is best for the future of our clients.</p>
+          </section>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="partners" aria-label="Our partners">
-    <div class="wrap">
-      <!--
-        Partner logos: save each logo in a folder called "partners" (same place as index.html)
-        using the file names below. If a file is missing, the company name shows instead.
-      -->
-      <ul class="grid">
-        <li>
-          <img src="sangfor.png" alt="Sangfor" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">Sangfor</span>
-        </li>
-        <li>
-          <img src="maipu.png" alt="Maipu - Make It Intelligent" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">Maipu<small>Make It Intelligent</small></span>
-        </li>
-        <li>
-          <img src="ruckus.png" alt="Ruckus Wireless" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">Ruckus<small>Wireless</small></span>
-        </li>
-        <li>
-          <img src="tp-link.png" alt="TP-Link - The Reliable Choice" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">TP-Link<small>The Reliable Choice</small></span>
-        </li>
-        <li>
-          <img src="aruba.png" alt="Aruba, a Hewlett Packard Enterprise company - Solution Provider, Silver Partner" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">Aruba<small>Solution Provider · Silver Partner</small></span>
-        </li>
-        <li>
-          <img src="hpe.png" alt="Hewlett Packard Enterprise - Solution Provider, Business Partner" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">Hewlett Packard Enterprise<small>Solution Provider · Business Partner</small></span>
-        </li>
-        <li>
-          <img src="hp.png" alt="HP invent" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">HP<small>invent</small></span>
-        </li>
-        <li>
-          <img src="alcatel.png" alt="Alcatel" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">Alcatel</span>
-        </li>
-        <li>
-          <img src="cisco.png" alt="Cisco" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">Cisco</span>
-        </li>
-        <li>
-          <img src="avaya.png" alt="Avaya" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">Avaya</span>
-        </li>
-        <li>
-          <img src="bosch.png" alt="Bosch - Invented for life" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">Bosch<small>Invented for life</small></span>
-        </li>
-        <li>
-          <img src="huawei.png" alt="Huawei Enterprise Partner - Authorized" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">Huawei<small>Enterprise Partner · Authorized</small></span>
-        </li>
-        <li>
-          <img src="java.png" alt="Java" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="fb">Java</span>
-        </li>
-      </ul>
-    </div>
-  </section>
+  <!-- BUSINESS OFFERINGS -->
+  <div class="view" data-view="business-offerings" data-title="Business Offerings | Ziantech Solutions Sdn Bhd" hidden>
+    <section class="hero" aria-label="Our Focus">
+      <img src="https://dy7glz37jgl0b.cloudfront.net/advice/images/9b56754ba3b61559811566f18db57b55-colleagues-discuss-work-on-computer_l.jpg" alt="Two colleagues discussing work across a table with open laptops">
+      <div class="wrap">
+        <span class="label">Business Offerings</span>
+        <h1>Our Focus.</h1>
+      </div>
+    </section>
+    <section class="block">
+      <div class="wrap">
+        <div class="head"><span class="label">Services</span><h2>Our Services.</h2></div>
+        <div class="services">
+          <article class="svc"><span class="label">01</span><h3>Networking</h3><p>Full networking solutions including design, installation, configuration and commissioning.</p></article>
+          <article class="svc"><span class="label">02</span><h3>Software/Application Development</h3><p>Able to provide and customise software/application as per customer and client requirements.</p></article>
+          <article class="svc"><span class="label">03</span><h3>Data Security</h3><p>Working with partner to provide consultation and solution on Data Security, including Data Leakage Protection and Data Leakage Identification.</p></article>
+          <article class="svc"><span class="label">04</span><h3>Movement Security</h3><p>Working with partners to develop total solution for Movement Security, including CCTV Systems, Analytical Application and Face Recognition and Identification.</p></article>
+          <article class="svc"><span class="label">05</span><h3>System Integration</h3><p>Designing hardware and software architecture as per requirement by the customers or clients.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="block">
+      <div class="wrap">
+        <div class="head"><span class="label">Coverage</span><h2>Business Coverage.</h2></div>
+        <ul class="coverage">
+          <li>Government</li><li>Military</li><li>Enforcement</li><li>Telecomunication</li><li>Oil & Gas</li>
+          <li>Utility</li><li>Transportation</li><li>Aviation Industry</li><li>International Venture Partnership</li><li>Offshore Operations</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- PARTNERSHIPS -->
+  <div class="view" data-view="partnerships" data-title="Partnerships | Ziantech Solutions Sdn Bhd" hidden>
+    <section class="hero-light" aria-label="Partnerships">
+      <img src="https://images.pexels.com/photos/19894154/pexels-photo-19894154.jpeg?cs=srgb&dl=pexels-sachuzayn-19894154.jpg&fm=jpg" alt="Two hands reaching toward each other in a handshake">
+      <div class="wrap">
+        <span class="label">Partnerships</span>
+        <div>
+          <h1>Partnerships.</h1>
+          <blockquote>"The successful functioning of a relationship relies on the interdependence and coordination between its moving parts, namely the partners."</blockquote>
+        </div>
+      </div>
+    </section>
+    <section class="partners" aria-label="Our partners">
+      <div class="wrap">
+        <ul class="grid">
+          <li><img src="sangfor.png" alt="Sangfor"><span class="fb">Sangfor</span></li>
+          <li><img src="maipu.png" alt="Maipu - Make It Intelligent"><span class="fb">Maipu<small>Make It Intelligent</small></span></li>
+          <li><img src="ruckus.png" alt="Ruckus Wireless"><span class="fb">Ruckus<small>Wireless</small></span></li>
+          <li><img src="tp-link.png" alt="TP-Link - The Reliable Choice"><span class="fb">TP-Link<small>The Reliable Choice</small></span></li>
+          <li><img src="aruba.png" alt="Aruba, a Hewlett Packard Enterprise company - Solution Provider, Silver Partner"><span class="fb">Aruba<small>Solution Provider · Silver Partner</small></span></li>
+          <li><img src="hpe.png" alt="Hewlett Packard Enterprise - Solution Provider, Business Partner"><span class="fb">Hewlett Packard Enterprise<small>Solution Provider · Business Partner</small></span></li>
+          <li><img src="hp.png" alt="HP invent"><span class="fb">HP<small>invent</small></span></li>
+          <li><img src="alcatel.png" alt="Alcatel"><span class="fb">Alcatel</span></li>
+          <li><img src="cisco.png" alt="Cisco"><span class="fb">Cisco</span></li>
+          <li><img src="avaya.png" alt="Avaya"><span class="fb">Avaya</span></li>
+          <li><img src="bosch.png" alt="Bosch - Invented for life"><span class="fb">Bosch<small>Invented for life</small></span></li>
+          <li><img src="huawei.png" alt="Huawei Enterprise Partner - Authorized"><span class="fb">Huawei<small>Enterprise Partner · Authorized</small></span></li>
+          <li><img src="java.png" alt="Java"><span class="fb">Java</span></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="view" data-view="contact" data-title="Contact | Ziantech Solutions Sdn Bhd" hidden>
+    <section class="us">
+      <div class="wrap">
+        <img src="https://thumbnails.yayimages.com/1600/10/19b/1019bcd0.jpg" alt="Black wires and nodes forming an abstract network against a pale background">
+        <div>
+          <span class="label tag">Contact</span>
+          <h1>Contact us.</h1>
+          <div class="lines">
+            <div class="line"><span class="label">Email</span><a href="mailto:sales@ziantech.com">sales@ziantech.com</a></div>
+            <div class="line"><span class="label">Tel</span><a href="tel:+60389539926">+(60)3-8953 9926</a></div>
+            <div class="line"><span class="label">Fax</span><span>+(60)3-8957 9926</span></div>
+            <div class="line"><span class="label">Address</span><address>No. 17-1, Jalan Atmosphere 6,<br>Pusat Perniagaan Atmosphere,<br>43300, Seri Kembangan,<br>Selangor, MALAYSIA</address></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
 </main>
 
-<section id="contact">
+<!-- Shared company band -->
+<section id="company" aria-label="Company details">
   <div class="contact">
     <div>
-      <span class="label">Contact</span>
+      <span class="label" id="bandLabel">Contact</span>
       <h2>Ziantech Solutions Sdn Bhd</h2>
     </div>
     <div class="rows">
-      <div class="row">
-        <span class="label">Address</span>
-        <address>No 17-1, Jalan Atmosphere 6,<br>Pusat Perniagaan Atmosphere,<br>43300 Seri Kembangan,<br>Selangor MALAYSIA</address>
-      </div>
-      <div class="row">
-        <span class="label">Phone</span>
-        <a href="tel:+60389539926">+(60)3-8953 9926</a>
-      </div>
-      <div class="row">
-        <span class="label">Email</span>
-        <a href="mailto:info@ziantech.com">info@ziantech.com</a>
-      </div>
+      <div class="row"><span class="label">Address</span><address>No 17-1, Jalan Atmosphere 6,<br>Pusat Perniagaan Atmosphere,<br>43300 Seri Kembangan,<br>Selangor MALAYSIA</address></div>
+      <div class="row"><span class="label">Phone</span><a href="tel:+60389539926">+(60)3-8953 9926</a></div>
+      <div class="row"><span class="label">Email</span><a href="mailto:info@ziantech.com">info@ziantech.com</a></div>
     </div>
   </div>
 </section>
@@ -220,10 +395,61 @@
 </footer>
 
 <script>
-  const t=document.getElementById('toggle'),m=document.getElementById('menu');
-  t.addEventListener('click',()=>{const o=m.classList.toggle('open');t.setAttribute('aria-expanded',o)});
-  m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{m.classList.remove('open');t.setAttribute('aria-expanded',false)}));
+(function(){
+  /* ---------- Page switching ---------- */
+  var views=[].slice.call(document.querySelectorAll('.view'));
+  var links=[].slice.call(document.querySelectorAll('[data-link]'));
+  var names=views.map(function(v){return v.dataset.view});
+  var menu=document.getElementById('menu'), toggle=document.getElementById('toggle');
+  var band=document.getElementById('bandLabel'), first=true;
+
+  function show(name){
+    if(names.indexOf(name)<0) name='main';
+    views.forEach(function(v){
+      var on=v.dataset.view===name;
+      v.hidden=!on;
+      v.classList.remove('enter');
+      if(on){ void v.offsetWidth; v.classList.add('enter'); document.title=v.dataset.title; }
+    });
+    links.forEach(function(a){
+      if(a.dataset.link===name) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    band.textContent = name==='contact' ? 'Company' : 'Contact';
+    menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false');
+    if(!first) window.scrollTo({top:0,behavior:'auto'});
+    first=false;
+  }
+  function route(){ show((location.hash||'#main').replace('#','')); }
+  window.addEventListener('hashchange',route);
+  route();
+
+  /* Fallback for partner logos that are missing */
+  document.querySelectorAll('.grid img').forEach(function(img){
+    function fb(){ img.style.display='none'; img.nextElementSibling.style.display='block'; }
+    img.addEventListener('error',fb);
+    if(img.complete && img.naturalWidth===0) fb();
+  });
+
+  /* Mobile menu */
+  toggle.addEventListener('click',function(){
+    var o=menu.classList.toggle('open'); toggle.setAttribute('aria-expanded',o);
+  });
+
   document.getElementById('yr').textContent=new Date().getFullYear();
+
+  /* ---------- Splash ---------- */
+  var s=document.getElementById('splash');
+  function endSplash(){ s.remove(); document.body.classList.remove('splashing'); }
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){ endSplash(); return; }
+  var pct=document.getElementById('pct'), fill=document.getElementById('fill'), dur=2200, t0=performance.now();
+  function tick(now){
+    var p=Math.min((now-t0)/dur,1), e=1-Math.pow(1-p,2), v=Math.round(e*100);
+    pct.textContent=v; fill.style.width=v+'%';
+    if(p<1){ requestAnimationFrame(tick); }
+    else{ s.classList.add('done'); setTimeout(endSplash,1000); }
+  }
+  requestAnimationFrame(tick);
+})();
 </script>
 </body>
 </html>
