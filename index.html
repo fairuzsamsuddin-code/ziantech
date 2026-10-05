@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partnerships | Ziantech Solutions Sdn Bhd</title>
+<meta name="description" content="Ziantech Solutions partners: Sangfor, Maipu, Ruckus, TP-Link, Aruba, HPE, HP, Alcatel, Cisco, Avaya, Bosch, Huawei and Java.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14161c;
+    --muted:#4b5160;
+    --line:#dfe2e8;
+    --bg:#ffffff;
+    --band:#f4f5f8;
+    --dark:#14161c;
+    --accent:#4b3a8f;
+    --accent-soft:#c9c1ee;
+    --pad:clamp(20px,5vw,64px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .label{font-family:'IBM Plex Mono',monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 var(--pad)}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+  .bar{max-width:1200px;margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center}
+  .brand img{display:block;height:48px;width:auto;max-width:220px;object-fit:contain}
+  nav ul{display:flex;gap:28px;list-style:none}
+  nav a{font-size:.95rem;padding:6px 0;border-bottom:2px solid transparent;transition:border-color .2s,color .2s}
+  nav a:hover{border-color:var(--line)}
+  nav a[aria-current="page"]{border-color:var(--accent);color:var(--accent)}
+  .toggle{display:none;background:none;border:1px solid var(--line);width:44px;height:44px;cursor:pointer;color:var(--ink)}
+  .toggle svg{width:22px;height:22px}
+
+  /* Hero */
+  .hero{position:relative;background:var(--band);min-height:clamp(300px,40vw,440px);display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+  .hero::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.72)}
+  .hero .wrap{position:relative;z-index:1;width:100%;padding-bottom:clamp(32px,5vw,64px);display:grid;grid-template-columns:200px 1fr;gap:clamp(24px,5vw,72px);align-items:end}
+  .hero .label{color:var(--ink);padding-top:.7rem;border-top:2px solid var(--accent);height:max-content;margin-bottom:.6rem}
+  .hero h1{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:400;letter-spacing:-.03em;line-height:1.05}
+  .hero blockquote{margin-top:16px;font-size:clamp(1.05rem,1.8vw,1.35rem);font-weight:300;line-height:1.6;max-width:36em;text-wrap:pretty;color:var(--ink)}
+
+  /* Partners */
+  .partners{padding:clamp(48px,7vw,96px) 0 0}
+  .grid{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .grid li{border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;min-height:200px;padding:28px;transition:background .2s}
+  .grid li:hover{background:var(--band)}
+  .grid img{display:block;max-width:100%;max-height:120px;width:auto;height:auto;object-fit:contain}
+  .grid .fb{display:none;text-align:center;font-weight:500;font-size:1.15rem;letter-spacing:-.01em;line-height:1.3}
+  .grid .fb small{display:block;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:400}
+
+  /* Contact */
+  #contact{background:var(--dark);color:#eceef3;margin-top:clamp(64px,10vw,140px)}
+  .contact{max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,104px) var(--pad);display:grid;grid-template-columns:1.2fr 1fr;gap:48px}
+  .contact h2{font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:400;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+  .contact .label{color:var(--accent-soft);margin-bottom:16px;display:block}
+  .rows{border-top:1px solid #343846}
+  .row{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid #343846}
+  .row .label{color:#9aa1b2;margin:0;padding-top:3px}
+  .row address{font-style:normal}
+  .row a{border-bottom:1px solid #5b5f72;transition:border-color .2s,color .2s}
+  .row a:hover{color:var(--accent-soft);border-color:var(--accent-soft)}
+
+  footer{background:var(--dark);border-top:1px solid #343846;color:#9aa1b2}
+  footer .in{max-width:1200px;margin:0 auto;padding:20px var(--pad);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.82rem}
+
+  @media (max-width:900px){
+    .toggle{display:inline-flex;align-items:center;justify-content:center}
+    nav{position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+    nav.open{display:block}
+    nav ul{flex-direction:column;gap:0;padding:8px var(--pad) 16px}
+    nav li{border-bottom:1px solid var(--line)}
+    nav li:last-child{border:0}
+    nav a{display:block;padding:14px 0;border-bottom:0}
+    .hero .wrap{grid-template-columns:1fr;gap:16px}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .grid li{min-height:160px}
+    .contact{grid-template-columns:1fr}
+  }
+  @media (max-width:480px){.row{grid-template-columns:1fr;gap:4px}.brand img{height:40px}.grid li{padding:20px}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="index.html" aria-label="Ziantech Solutions Sdn Bhd - home">
+      <img src="logo.png" alt="Ziantech Solutions Sdn Bhd">
+    </a>
+    <button class="toggle" id="toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav id="menu" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Main</a></li>
+        <li><a href="core-values.html">Core Values</a></li>
+        <li><a href="business-offerings.html">Business Offerings</a></li>
+        <li><a href="partnerships.html" aria-current="page">Partnerships</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-label="Partnerships">
+    <img src="https://images.pexels.com/photos/19894154/pexels-photo-19894154.jpeg?cs=srgb&dl=pexels-sachuzayn-19894154.jpg&fm=jpg" alt="Two hands reaching toward each other in a handshake" loading="eager">
+    <div class="wrap">
+      <span class="label">Partnerships</span>
+      <div>
+        <h1>Partnerships.</h1>
+        <blockquote>"The successful functioning of a relationship relies on the interdependence and coordination between its moving parts, namely the partners."</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="partners" aria-label="Our partners">
+    <div class="wrap">
+      <!--
+        Partner logos: save each logo in a folder called "partners" (same place as index.html)
+        using the file names below. If a file is missing, the company name shows instead.
+      -->
+      <ul class="grid">
+        <li>
+          <img src="partners/sangfor.png" alt="Sangfor" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">Sangfor</span>
+        </li>
+        <li>
+          <img src="partners/maipu.png" alt="Maipu - Make It Intelligent" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">Maipu<small>Make It Intelligent</small></span>
+        </li>
+        <li>
+          <img src="partners/ruckus.png" alt="Ruckus Wireless" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">Ruckus<small>Wireless</small></span>
+        </li>
+        <li>
+          <img src="partners/tp-link.png" alt="TP-Link - The Reliable Choice" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">TP-Link<small>The Reliable Choice</small></span>
+        </li>
+        <li>
+          <img src="partners/aruba.png" alt="Aruba, a Hewlett Packard Enterprise company - Solution Provider, Silver Partner" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">Aruba<small>Solution Provider · Silver Partner</small></span>
+        </li>
+        <li>
+          <img src="partners/hpe.png" alt="Hewlett Packard Enterprise - Solution Provider, Business Partner" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">Hewlett Packard Enterprise<small>Solution Provider · Business Partner</small></span>
+        </li>
+        <li>
+          <img src="partners/hp.png" alt="HP invent" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">HP<small>invent</small></span>
+        </li>
+        <li>
+          <img src="partners/alcatel.png" alt="Alcatel" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">Alcatel</span>
+        </li>
+        <li>
+          <img src="partners/cisco.png" alt="Cisco" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">Cisco</span>
+        </li>
+        <li>
+          <img src="partners/avaya.png" alt="Avaya" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">Avaya</span>
+        </li>
+        <li>
+          <img src="partners/bosch.png" alt="Bosch - Invented for life" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">Bosch<small>Invented for life</small></span>
+        </li>
+        <li>
+          <img src="partners/huawei.png" alt="Huawei Enterprise Partner - Authorized" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">Huawei<small>Enterprise Partner · Authorized</small></span>
+        </li>
+        <li>
+          <img src="partners/java.png" alt="Java" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="fb">Java</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<section id="contact">
+  <div class="contact">
+    <div>
+      <span class="label">Contact</span>
+      <h2>Ziantech Solutions Sdn Bhd</h2>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <span class="label">Address</span>
+        <address>No 17-1, Jalan Atmosphere 6,<br>Pusat Perniagaan Atmosphere,<br>43300 Seri Kembangan,<br>Selangor MALAYSIA</address>
+      </div>
+      <div class="row">
+        <span class="label">Phone</span>
+        <a href="tel:+60389539926">+(60)3-8953 9926</a>
+      </div>
+      <div class="row">
+        <span class="label">Email</span>
+        <a href="mailto:info@ziantech.com">info@ziantech.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="in">
+    <span>© <span id="yr">2026</span> Ziantech Solutions Sdn Bhd</span>
+    <span>Seri Kembangan, Selangor, Malaysia</span>
+  </div>
+</footer>
+
+<script>
+  const t=document.getElementById('toggle'),m=document.getElementById('menu');
+  t.addEventListener('click',()=>{const o=m.classList.toggle('open');t.setAttribute('aria-expanded',o)});
+  m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{m.classList.remove('open');t.setAttribute('aria-expanded',false)}));
+  document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
