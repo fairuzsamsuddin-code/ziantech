@@ -249,6 +249,10 @@
   .pf-head p{margin-top:16px;color:var(--muted);max-width:44em;font-weight:300;font-size:1.05rem;text-wrap:pretty}
   .pf-quote{border-left:3px solid var(--accent);padding:4px 0 4px 24px;font-size:clamp(1.1rem,2vw,1.5rem);font-weight:300;line-height:1.6;max-width:40em;text-wrap:pretty}
   .pf-quote cite{display:block;margin-top:12px;font-style:normal}
+
+  /* Company motto (accent colour, larger than the headings around it) */
+  .pf-head .pf-motto{margin:0;max-width:none;color:var(--accent);font-size:clamp(2.2rem,5.4vw,3.8rem);font-weight:300;line-height:1.1;letter-spacing:-.025em;text-wrap:balance}
+
   .pf-three{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .pf-three>div{padding:28px 28px 28px 0}
   .pf-three>div+div{padding-left:28px;border-left:1px solid var(--line)}
@@ -426,6 +430,14 @@
         We create. The core ingredient in ICT is always the heart of the system, and the heart is the software that runs it. When the heart stops beating, nothing continues running. We create and develop application software.
         <cite class="label">Our philosophy</cite>
       </blockquote>
+    </section>
+
+    <!-- COMPANY MOTTO -->
+    <section class="pf" aria-label="Company motto">
+      <div class="pf-head" style="margin-bottom:0">
+        <span class="label">Our motto</span>
+        <div><p class="pf-motto">..sense of future…</p></div>
+      </div>
     </section>
 
     <section class="pf">
@@ -695,8 +707,8 @@
   var header=document.querySelector('header');
 
   /* ---------- Scroll reveal system ---------- */
-  var SPLIT='.title h1,.hero h1,.hero-light h1,.us h1,.pf-head h1,.pf-head h2,.head h2';
-  var RV='.title .label,.head .label,.pf-head .label,.pf-head p,.pf-quote,.item,.svc,.pf-three>div,.pf-time li,.pf-ind li,.pf-clients section,.pf-work li,.grid li,.coverage li,.line,.pf-cta .in,.hero .label,.hero-light .label,.hero-light blockquote,.us .label.tag,.rows .row,.contact>div:first-child';
+  var SPLIT='.title h1,.hero h1,.hero-light h1,.us h1,.pf-head h1,.pf-head h2,.head h2,.pf-motto';
+  var RV='.title .label,.head .label,.pf-head .label,.pf-head p:not(.pf-motto),.pf-quote,.item,.svc,.pf-three>div,.pf-time li,.pf-ind li,.pf-clients section,.pf-work li,.grid li,.coverage li,.line,.pf-cta .in,.hero .label,.hero-light .label,.hero-light blockquote,.us .label.tag,.rows .row,.contact>div:first-child';
 
   var splits=[].slice.call(document.querySelectorAll(SPLIT));
   splits.forEach(function(h){
