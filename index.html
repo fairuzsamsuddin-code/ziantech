@@ -232,13 +232,25 @@
   .us{padding:clamp(56px,9vw,128px) 0 0}
   .us .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
   .us img{display:block;width:100%;aspect-ratio:1.38/1;object-fit:cover;background:var(--band)}
-  .us .label.tag{display:inline-block;padding-top:.7rem;border-top:2px solid var(--accent);min-width:160px}
-  .us h1{font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:400;letter-spacing:-.03em;line-height:1.05;margin:18px 0 28px}
-  .lines{border-top:1px solid var(--line)}
-  .line{display:grid;grid-template-columns:90px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
-  .line .label{padding-top:3px}
-  .line a{border-bottom:1px solid var(--line);transition:border-color .2s,color .2s}
-  .line a:hover{color:var(--accent);border-color:var(--accent)}
+
+  /* Message Us form */
+  .msg{font-family:'IBM Plex Sans',system-ui,sans-serif;color:#212529}
+  .msg h1{font-family:'IBM Plex Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(1.9rem,3.4vw,2.4rem);letter-spacing:0;line-height:1.2;color:#6b7280;text-align:center;margin:0}
+  .msg .bar-accent{display:block;width:220px;max-width:60%;height:10px;border-radius:6px;background:#7a1428;margin:18px auto 34px}
+  .msg label{display:block;font-size:1.25rem;font-weight:400;color:#212529;margin:0 0 12px;line-height:1.3}
+  .msg .fld{margin-bottom:28px}
+  .msg input,.msg textarea{display:block;width:100%;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:1.2rem;color:#212529;background:#fff;border:2px solid #d9dce1;border-radius:6px;padding:16px 24px;line-height:1.4;transition:border-color .2s,box-shadow .2s}
+  .msg textarea{min-height:122px;resize:vertical}
+  .msg input::placeholder,.msg textarea::placeholder{color:#6b7280;opacity:1}
+  .msg input:focus,.msg textarea:focus{outline:none;border-color:#ef8a5a;box-shadow:0 0 0 3px rgba(239,138,90,.2)}
+  .msg .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .msg .send{display:inline-block;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:1.5rem;color:#fff;background:var(--accent);border:0;border-radius:8px;padding:26px 40px;cursor:pointer;line-height:1;box-shadow:0 10px 24px rgba(0,0,0,.08);transition:background .2s,transform .2s}
+  .msg .send:hover{background:#3d2f75}
+  .msg .send:disabled{opacity:.7;cursor:not-allowed}
+  .msg .note{margin-top:18px;font-size:1.05rem;min-height:1.4em}
+  .msg .note.ok{color:#1f7a3d}
+  .msg .note.err{color:#b3261e}
+
   address{font-style:normal}
 
   /* ---------- Profile & Track record ---------- */
@@ -333,12 +345,15 @@
     .services{grid-template-columns:1fr}
     .svc:nth-child(even){padding-left:0;border-left:0}
     .coverage,.pf-ind{grid-template-columns:1fr 1fr}
-    .row,.line{grid-template-columns:1fr;gap:4px}
+    .row{grid-template-columns:1fr;gap:4px}
     .brand img{height:40px}
     header.scrolled .brand img{height:34px}
     .grid li{padding:20px}
     #splash .hud.top span:last-child{display:none}
     #splash .word .w2{letter-spacing:.4em;margin-right:-.4em}
+    .msg label{font-size:1.1rem}
+    .msg input,.msg textarea{font-size:1.05rem;padding:14px 18px}
+    .msg .send{font-size:1.25rem;padding:22px 32px}
   }
   @media (prefers-reduced-motion:reduce){
     *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
@@ -649,20 +664,36 @@
     </div></div>
   </div>
 
-  <!-- CONTACT -->
+  <!-- CONTACT (Message Us form) -->
   <div class="view" data-view="contact" data-title="Contact | Ziantech Solutions Sdn Bhd" hidden>
     <section class="us">
       <div class="wrap">
         <div class="frame"><img src="contact.jpeg" alt="Black wires and nodes forming an abstract network against a pale background"></div>
-        <div>
-          <span class="label tag">Contact</span>
-          <h1>Contact us.</h1>
-          <div class="lines">
-            <div class="line"><span class="label">Email</span><a href="mailto:sales@ziantech.com">sales@ziantech.com</a></div>
-            <div class="line"><span class="label">Tel</span><a href="tel:+60389539926">+(60)3-8953 9926</a></div>
-            <div class="line"><span class="label">Fax</span><span>+(60)3-8957 9926</span></div>
-            <div class="line"><span class="label">Address</span><address>No. 17-1, Jalan Atmosphere 6,<br>Pusat Perniagaan Atmosphere,<br>43300, Seri Kembangan,<br>Selangor, MALAYSIA</address></div>
-          </div>
+        <div class="msg">
+          <h1>Message Us</h1>
+          <span class="bar-accent" aria-hidden="true"></span>
+          <form id="contactForm" novalidate>
+            <div class="fld">
+              <label for="cf-name">Full Name*</label>
+              <input type="text" id="cf-name" name="name" placeholder="Full Name" autocomplete="name" required>
+            </div>
+            <div class="fld">
+              <label for="cf-email">Email*</label>
+              <input type="email" id="cf-email" name="email" placeholder="Email" autocomplete="email" required>
+            </div>
+            <div class="fld">
+              <label for="cf-company">Company/Organization</label>
+              <input type="text" id="cf-company" name="company" placeholder="Company/Organization" autocomplete="organization">
+            </div>
+            <div class="fld">
+              <label for="cf-msg">How can we help you?*</label>
+              <textarea id="cf-msg" name="message" placeholder="How can we help you?" required></textarea>
+            </div>
+            <!-- Spam trap: leave empty -->
+            <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button type="submit" class="send" id="cf-send">Submit</button>
+            <p class="note" id="cf-note" role="status" aria-live="polite"></p>
+          </form>
         </div>
       </div>
     </section>
@@ -708,8 +739,8 @@
   var header=document.querySelector('header');
 
   /* ---------- Scroll reveal system ---------- */
-  var SPLIT='.title h1,.hero h1,.hero-light h1,.us h1,.pf-head h1,.pf-head h2,.head h2,.pf-motto';
-  var RV='.title .label,.head .label,.pf-head .label,.pf-head p:not(.pf-motto),.pf-quote,.item,.svc,.pf-three>div,.pf-time li,.pf-ind li,.pf-clients section,.pf-work li,.grid li,.coverage li,.line,.pf-cta .in,.hero .label,.hero-light .label,.hero-light blockquote,.us .label.tag,.rows .row,.contact>div:first-child';
+  var SPLIT='.title h1,.hero h1,.hero-light h1,.msg h1,.pf-head h1,.pf-head h2,.head h2,.pf-motto';
+  var RV='.title .label,.head .label,.pf-head .label,.pf-head p:not(.pf-motto),.pf-quote,.item,.svc,.pf-three>div,.pf-time li,.pf-ind li,.pf-clients section,.pf-work li,.grid li,.coverage li,.pf-cta .in,.hero .label,.hero-light .label,.hero-light blockquote,.rows .row,.contact>div:first-child';
 
   var splits=[].slice.call(document.querySelectorAll(SPLIT));
   splits.forEach(function(h){
@@ -864,6 +895,50 @@
   });
 
   document.getElementById('yr').textContent=new Date().getFullYear();
+
+  /* ---------- Message Us form: sends an email to sales@ziantech.com ---------- */
+  (function(){
+    var form=document.getElementById('contactForm');
+    var btn=document.getElementById('cf-send');
+    var note=document.getElementById('cf-note');
+    var ENDPOINT='https://formsubmit.co/ajax/sales@ziantech.com';
+    function msg(t,c){ note.textContent=t; note.className='note '+(c||''); }
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var name=form.name.value.trim(), email=form.email.value.trim(),
+          company=form.company.value.trim(), text=form.message.value.trim();
+      if(form._honey.value) return; /* bot */
+      if(!name||!email||!text){ msg('Please fill in all required fields (*).','err'); return; }
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ msg('Please enter a valid email address.','err'); form.email.focus(); return; }
+      btn.disabled=true; btn.textContent='Sending...'; msg('');
+      fetch(ENDPOINT,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          name:name,
+          email:email,
+          company:company||'-',
+          message:text,
+          _subject:'New website enquiry from '+name,
+          _replyto:email,
+          _template:'table',
+          _captcha:'false'
+        })
+      }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return {ok:r.ok,d:d}; }); })
+      .then(function(res){
+        if(res.ok && String(res.d.success)!=='false'){
+          form.reset();
+          msg('Thank you! Your message has been sent. We will get back to you soon.','ok');
+        } else {
+          msg('Sorry, your message could not be sent. Please email us at sales@ziantech.com.','err');
+        }
+      }).catch(function(){
+        msg('Network error. Please try again or email us at sales@ziantech.com.','err');
+      }).then(function(){
+        btn.disabled=false; btn.textContent='Submit';
+      });
+    });
+  })();
 
   /* ---------- Advanced Splash ---------- */
   var s=document.getElementById('splash');
